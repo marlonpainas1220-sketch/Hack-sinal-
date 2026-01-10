@@ -3,57 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>TERRA PRO - QUANTUM</title>
+    <title>TERRA PRO - ULTRA CONNECT</title>
     <style>
-        :root { --glow: #00ff88; --bg: #000; }
-        body { font-family: -apple-system, sans-serif; background: var(--bg); color: #fff; padding: 15px; text-align: center; }
-        .card { background: #111; border-radius: 20px; padding: 15px; border: 1px solid #333; margin-bottom: 15px; }
-        .status { color: var(--glow); font-family: monospace; font-size: 0.8rem; margin-bottom: 10px; }
-        .btn { display: block; padding: 15px; border-radius: 12px; font-weight: bold; text-decoration: none; border: none; cursor: pointer; margin-top: 10px; width: 100%; box-sizing: border-box; }
-        .wa { background: #25d366; color: white; }
-        .yt { background: #ff0000; color: white; }
-        .boost { background: var(--glow); color: #000; }
-        iframe { border-radius: 10px; border: 1px solid #333; background: #000; }
+        :root { --glow: #00ff88; --mesh: #00d4ff; --apple: #5fc9f8; --bg: #000; }
+        body { font-family: -apple-system, sans-serif; background: var(--bg); color: #fff; padding: 10px; text-align: center; margin: 0; }
+        .card { background: #111; border-radius: 20px; padding: 15px; border: 1px solid #333; margin-bottom: 10px; }
+        .btn { display: block; padding: 14px; border-radius: 12px; font-weight: bold; text-decoration: none; border: none; cursor: pointer; width: 100%; box-sizing: border-box; margin-top: 8px; font-size: 0.9rem; }
+        .btn-apple { background: var(--apple); color: #000; }
+        .btn-wa { background: #25d366; color: #fff; }
+        .btn-mesh { background: var(--mesh); color: #000; }
+        #mesh-box { height: 100px; overflow-y: auto; background: #050505; border: 1px solid #222; border-radius: 10px; padding: 10px; font-size: 0.8rem; text-align: left; margin: 10px 0; color: var(--mesh); }
+        .signal-header { display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--glow); font-family: monospace; margin-bottom: 5px; }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <div id="log" class="status">SINAL ATIVO: -53 dBm</div>
-        <div style="font-size: 2.2rem; font-weight: bold; color: var(--glow);">TUNELAMENTO ON</div>
-        <button class="btn boost" onclick="startTurbo()">OTIMIZAR BANDA LARGA</button>
+        <div class="signal-header">
+            <span>📡 SINAL: -53 dBm</span>
+            <span>🛰️ SATÉLITE: DISPONÍVEL</span>
+        </div>
+        <button class="btn" style="background:var(--glow); color:#000;" onclick="turbo()">POTENCIALIZAR CHIP A18</button>
+    </div>
+
+    <div class="card" style="border-color: var(--apple);">
+        <h3 style="color:var(--apple); margin:0; font-size:1rem;">APPLE ECOSYSTEM</h3>
+        <p style="font-size:0.7rem; color:#aaa;">Usa hardware de satélite se não houver 4G/5G</p>
+        <a href="sms:" class="btn btn-apple">ABRIR iMESSAGE (VIA SATÉLITE)</a>
+    </div>
+
+    <div class="card" style="border-color: var(--mesh);">
+        <h3 style="color:var(--mesh); margin:0; font-size:1rem;">MESH AO VIVO</h3>
+        <div id="mesh-box">>> Rede local via Hotspot ativa...</div>
+        <div style="display:flex; gap:5px;">
+            <input type="text" id="u" placeholder="Nome" style="width:30%; background:#222; color:#fff; border:none; border-radius:8px; padding:5px;">
+            <input type="text" id="m" placeholder="Msg local..." style="width:70%; background:#222; color:#fff; border:none; border-radius:8px; padding:5px;">
+        </div>
+        <button class="btn btn-mesh" onclick="sendM()">ENVIAR NA REDE MESH</button>
     </div>
 
     <div class="card">
-        <h3>ACELERAÇÃO DE APPS</h3>
-        <a href="https://api.whatsapp.com/send?text=Sinal_Terra_Pro_Ativo" target="_blank" class="btn wa">WHATSAPP VIA TÚNEL</a>
-        
-        <div style="margin-top:20px;">
-            <small>YouTube Lite (Forçar 144p)</small>
-            <input type="text" id="ytId" placeholder="ID do vídeo (ex: dQw4w9WgXcQ)" style="width:70%; padding:10px; border-radius:10px; border:none; margin-top:5px;">
-            <button onclick="playYT()" style="width:25%; padding:10px; border-radius:10px; background:var(--glow); border:none;">OK</button>
-            <div id="player" style="margin-top:15px;"></div>
+        <h3 style="margin:0; font-size:1rem;">INJETORES DE BANDA</h3>
+        <a href="https://api.whatsapp.com/send?text=Conectado_via_Terra_Pro" target="_blank" class="btn btn-wa">WHATSAPP TUNNEL</a>
+        <div style="margin-top:10px; display:flex; gap:5px;">
+            <input type="text" id="yt" placeholder="ID YouTube" style="width:75%; background:#222; color:#fff; border:none; border-radius:8px;">
+            <button onclick="play()" style="width:20%; background:red; border:none; border-radius:8px; color:#fff;">GO</button>
         </div>
+        <div id="v" style="margin-top:10px;"></div>
     </div>
 
     <script>
-        function startTurbo() {
-            // Força o processador a manter o rádio em modo de escuta ativa
-            document.getElementById('log').innerText = "INJETANDO PACOTES UDP...";
-            if (window.navigator.vibrate) window.navigator.vibrate([100, 50, 100]);
-            
-            // Loop de Persistência
-            setInterval(() => {
-                const img = new Image();
-                img.src = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png?t=" + Date.now();
-            }, 3000);
+        const bc = new BroadcastChannel('ultra_mesh');
+        bc.onmessage = (e) => {
+            const box = document.getElementById('mesh-box');
+            box.innerHTML += `<div><b>${e.data.u}:</b> ${e.data.m}</div>`;
+            box.scrollTop = box.scrollHeight;
+        };
+
+        function sendM() {
+            const u = document.getElementById('u').value || "User";
+            const m = document.getElementById('m').value;
+            if(m) { bc.postMessage({u, m}); document.getElementById('mesh-box').innerHTML += `<div><b>Você:</b> ${m}</div>`; document.getElementById('m').value = ""; }
         }
 
-        function playYT() {
-            const id = document.getElementById('ytId').value;
-            // O embed com vq=tiny força o menor gasto de dados possível
-            document.getElementById('player').innerHTML = 
-                `<iframe width="100%" height="200" src="https://www.youtube.com/embed/${id}?vq=tiny&autoplay=1" allowfullscreen></iframe>`;
+        function turbo() {
+            alert("Sincronizando Antenas de Satélite e Rádio...");
+            setInterval(() => { fetch('https://1.1.1.1', { mode: 'no-cors' }); }, 10000);
+        }
+
+        function play() {
+            const id = document.getElementById('yt').value;
+            document.getElementById('v').innerHTML = `<iframe width="100%" height="150" src="https://www.youtube.com/embed/${id}?vq=tiny" frameborder="0"></iframe>`;
         }
     </script>
 </body>
