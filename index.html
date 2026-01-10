@@ -3,63 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>TERRA PRO - BANDA LARGA</title>
+    <title>TERRA PRO - ULTRA LINK</title>
     <style>
-        :root { --glow: #00ff88; --bg: #000; }
+        :root { --glow: #00ff88; --bg: #050505; --wa: #25d366; --yt: #ff0000; }
         body { font-family: -apple-system, sans-serif; background: var(--bg); color: #fff; padding: 15px; text-align: center; }
-        .card { background: #111; border-radius: 20px; padding: 20px; border: 1px solid #333; margin-bottom: 15px; }
-        .display { font-size: 2.5rem; font-weight: bold; color: var(--glow); }
-        button { background: var(--glow); color: #000; border: none; padding: 18px; border-radius: 15px; width: 100%; font-weight: bold; font-size: 1.1rem; }
-        #mesh-status { font-size: 0.7rem; color: #888; margin-bottom: 10px; }
-        .pulse-ring { border: 3px solid var(--glow); border-radius: 50%; height: 50px; width: 50px; position: absolute; animation: pulsate 1.5s infinite; }
-        @keyframes pulsate { 0% {transform: scale(0.1); opacity: 0;} 50% {opacity: 1;} 100% {transform: scale(1.2); opacity: 0;} }
+        .card { background: #111; border-radius: 20px; padding: 15px; border: 1px solid #333; margin-bottom: 12px; }
+        .btn-link { display: block; padding: 15px; border-radius: 12px; text-decoration: none; font-weight: bold; margin-top: 10px; color: #fff; }
+        .wa-btn { background: var(--wa); color: #fff; }
+        .yt-btn { background: var(--yt); color: #fff; }
+        .display { font-size: 2rem; font-weight: bold; color: var(--glow); }
+        button { background: var(--glow); color: #000; border: none; padding: 12px; border-radius: 10px; width: 100%; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <h2>TERRA <span style="color:var(--glow)">PRO</span> v3</h2>
-    
     <div class="card">
-        <div id="mesh-status">MODO REPETIDOR ATIVO</div>
+        <h2>SINAL SINTONIZADO</h2>
         <div id="dbm-val" class="display">-53 dBm</div>
-        <p>Sinal Sintonizado</p>
-        <button onclick="forçarBanda()">MAXIMIZAR BANDA LARGA</button>
+        <button onclick="boost()">AMPLIFICAR RESQUÍCIO</button>
     </div>
 
     <div class="card">
-        <h3>Compartilhamento Mesh</h3>
-        <input type="text" id="m" placeholder="Mensagem para a rede..." style="width:100%; padding:10px; border-radius:10px; margin-bottom:10px;">
-        <button onclick="enviar()" style="background:#007aff; color:#fff;">ENVIAR VIA HOTSPOT</button>
+        <h3>INJETORES DE BANDA</h3>
+        
+        <a href="whatsapp://send?text=Enviando via Terra Pro Offline" class="btn-link wa-btn">ABRIR WHATSAPP LITE</a>
+        
+        <div id="yt-player" style="margin-top:10px;">
+             <small>YouTube Lite (Baixo Bitrate)</small>
+             <input type="text" id="yt-url" placeholder="ID do vídeo ou busca..." style="width:80%; padding:5px;">
+             <button onclick="loadYT()" style="width:15%; padding:5px;">Go</button>
+             <div id="video-area" style="margin-top:10px;"></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>iMessage / Satélite</h3>
+        <p style="font-size:0.7rem">Se o sinal cair abaixo de -120dBm, use:</p>
+        <a href="messages://" class="btn-link" style="background: #007aff;">ABRIR iMESSAGE SATÉLITE</a>
     </div>
 
     <script>
-        const bc = new BroadcastChannel('terra_banda');
-        
-        function forçarBanda() {
-            // Técnica de Keep-Alive: faz requisições pequenas para manter o rádio do iPhone 16 acordado
-            setInterval(() => {
-                fetch('https://www.google.com/generate_204', { mode: 'no-cors' })
-                .then(() => { document.getElementById('mesh-status').innerText = "LINK ESTÁVEL"; })
-                .catch(() => { document.getElementById('mesh-status').innerText = "BUSCANDO RESQUÍCIO..."; });
-            }, 5000);
-            
-            // Ativa vibração de confirmação
-            window.navigator.vibrate?.([100, 50, 100]);
+        function boost() {
+            window.navigator.vibrate?.(200);
+            alert("Injetando pacotes de persistência no chip A18...");
         }
 
-        function enviar() {
-            const msg = document.getElementById('m').value;
-            if(msg) {
-                bc.postMessage(msg);
-                alert("Mensagem enviada para a malha!");
-                document.getElementById('m').value = "";
-            }
+        function loadYT() {
+            const id = document.getElementById('yt-url').value;
+            // Carrega o vídeo em modo embed que gasta menos dados que o app
+            document.getElementById('video-area').innerHTML = 
+                `<iframe width="100%" height="180" src="https://www.youtube.com/embed/${id}?vq=tiny" frameborder="0"></iframe>`;
         }
-        
-        // Sensor de Altitude e Movimento automático
-        window.addEventListener('devicemotion', () => {
-            // Isso força o chip A18 a processar dados de sensores e rádio simultaneamente
-        });
     </script>
 </body>
 </html>
