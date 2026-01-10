@@ -1,78 +1,13 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>TERRA PRO HARD-LOCK</title>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <style>
-        body { background: #000; color: #fff; font-family: sans-serif; text-align: center; padding: 20px; }
-        .box { background: #111; border: 1px solid #333; border-radius: 15px; padding: 15px; margin-bottom: 10px; }
-        .val { font-size: 2rem; color: #00ff88; font-weight: bold; }
-        .btn { display: block; width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; border: none; font-weight: bold; font-size: 1rem; cursor: pointer; }
-        .btn-green { background: #00ff88; color: #000; }
-        .btn-blue { background: #007aff; color: #fff; }
-        .btn-wa { background: #25d366; color: #fff; }
-        #log { font-size: 0.7rem; color: #888; height: 50px; overflow: auto; text-align: left; background: #000; padding: 5px; }
-    </style>
-</head>
-<body>
+<button class="btn" style="background:#f1c40f; color:#000;" onclick="injetarBanda()">INJETAR BANDA LARGA</button>
 
-    <h2>TERRA PRO <span style="color:#00ff88">V8</span></h2>
-
-    <div class="box">
-        <div id="dbm" class="val">-- dBm</div>
-        <small>SINAL SINTONIZADO</small>
-        <button class="btn btn-green" onclick="ativarTudo()">FORÇAR ATIVAÇÃO HARDWARE</button>
-    </div>
-
-    <div class="box">
-        <input type="text" id="msg" placeholder="Texto da mensagem..." style="width:100%; padding:10px; border-radius:5px; margin-bottom:5px;">
-        <button class="btn btn-wa" onclick="enviarWA()">ENVIAR WHATSAPP (TÚNEL)</button>
-        <button class="btn btn-blue" onclick="enviarSMS()">ENVIAR iMESSAGE / SATÉLITE</button>
-    </div>
-
-    <div class="box">
-        <div id="alt" style="color:#00d4ff">Altitude: --</div>
-        <div id="dir" style="color:#00d4ff">Bússola: --°</div>
-        <div id="log">Aguardando comando...</div>
-    </div>
-
-    <script>
-        const logger = (m) => { document.getElementById('log').innerHTML += `> ${m}<br>`; };
-
-        function ativarTudo() {
-            logger("Iniciando Sensores...");
-            // GPS e Sinal
-            navigator.geolocation.watchPosition(p => {
-                const acc = p.coords.accuracy;
-                document.getElementById('dbm').innerText = Math.round(-50 - (acc/2)) + " dBm";
-                document.getElementById('alt').innerText = "Altitude: " + Math.round(p.coords.altitude || 0) + "m";
-                logger("Sinal calibrado.");
-            }, (e) => logger("Erro GPS: " + e.message), {enableHighAccuracy: true});
-
-            // Bússola
-            if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-                DeviceOrientationEvent.requestPermission().then(s => {
-                    if(s==='granted') window.addEventListener('deviceorientation', e => {
-                        let h = e.webkitCompassHeading || e.alpha;
-                        document.getElementById('dir').innerText = "Bússola: " + Math.round(h) + "°";
-                    });
-                });
-            }
-        }
-
-        function enviarWA() {
-            const t = document.getElementById('msg').value;
-            logger("Abrindo túnel WhatsApp...");
-            window.location.href = `whatsapp://send?text=${encodeURIComponent(t)}`;
-        }
-
-        function enviarSMS() {
-            const t = document.getElementById('msg').value;
-            logger("Acionando Rádio/Satélite...");
-            window.location.href = `sms:?&body=${encodeURIComponent(t)}`;
-        }
-    </script>
-</body>
-</html>
+<script>
+function injetarBanda() {
+    alert("Injetando pacotes de persistência...");
+    // Mantém a conexão aberta forçando downloads minúsculos em loop
+    setInterval(() => {
+        const i = new Image();
+        i.src = "https://www.google.com/favicon.ico?t=" + Date.now();
+        document.getElementById('log').innerHTML += "> Pulso de banda enviado...<br>";
+    }, 2000);
+}
+</script>
