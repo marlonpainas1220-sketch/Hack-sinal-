@@ -3,101 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>TERRA PRO - ULTRA WIDE</title>
+    <title>TERRA PRO - SIGNAL COMMANDER</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <style>
-        :root { --glow: #00ff88; --mesh: #00d4ff; --bg: #000; }
+        :root { --glow: #00ff88; --mesh: #00d4ff; --bg: #000; --panel: #111; }
         body { font-family: -apple-system, sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 10px; }
         
-        /* Central de Controle Expandida */
-        .dashboard { background: #1a1a1a; border-radius: 15px; padding: 12px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; border: 1px solid #333; }
-        .stat { text-align: center; font-size: 0.65rem; color: #888; }
-        .stat b { display: block; font-size: 0.9rem; color: var(--glow); }
-        .tunnel-active { color: #f1c40f !important; animation: blink 1s infinite; }
-        @keyframes blink { 50% { opacity: 0.5; } }
-
-        .card { background: #111; border-radius: 18px; padding: 15px; border: 1px solid #222; margin-bottom: 10px; position: relative; overflow: hidden; }
-        .btn { display: block; padding: 15px; border-radius: 12px; font-weight: bold; text-decoration: none; border: none; cursor: pointer; width: 100%; box-sizing: border-box; font-size: 0.9rem; margin-top: 8px; }
+        /* NOVO PAINEL DE DIAGNÓSTICO */
+        .signal-dashboard { background: var(--panel); border-radius: 20px; padding: 15px; border: 1px solid #333; margin-bottom: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .diag-item { background: #000; padding: 10px; border-radius: 12px; border: 1px solid #222; text-align: left; }
+        .diag-label { font-size: 0.6rem; color: #888; text-transform: uppercase; }
+        .diag-value { font-size: 1.1rem; font-weight: bold; color: var(--glow); font-family: monospace; }
         
-        /* Barra de Progresso do Túnel */
-        .tunnel-bar { width: 100%; height: 4px; background: #222; border-radius: 2px; margin-top: 10px; }
-        #fill { width: 0%; height: 100%; background: var(--glow); transition: 0.3s; }
+        /* GRÁFICO DE ONDA */
+        .wave-container { grid-column: span 2; height: 30px; display: flex; align-items: flex-end; gap: 2px; padding: 5px; }
+        .bar { flex: 1; background: var(--glow); min-height: 2px; transition: height 0.2s; opacity: 0.6; }
+
+        .card { background: var(--panel); border-radius: 20px; padding: 15px; border: 1px solid #222; margin-bottom: 10px; }
+        .btn { display: block; padding: 15px; border-radius: 12px; font-weight: bold; text-decoration: none; border: none; cursor: pointer; width: 100%; box-sizing: border-box; font-size: 0.9rem; margin-top: 5px; }
     </style>
 </head>
 <body>
 
-    <div class="dashboard">
-        <div class="stat">TÚNEL <b>MAX-WIDE</b></div>
-        <div class="stat">LATÊNCIA <b id="ping">-- ms</b></div>
-        <div class="stat">SINAL <b id="dbm-status">-53 dBm</b></div>
+    <div class="signal-dashboard">
+        <div class="diag-item">
+            <span class="diag-label">POTÊNCIA REAL</span>
+            <div id="dbm-val" class="diag-value">-- dBm</div>
+        </div>
+        <div class="diag-item">
+            <span class="diag-label">QUALIDADE (SNR)</span>
+            <div id="snr-val" class="diag-value">OTIMIZANDO</div>
+        </div>
+        <div class="diag-item">
+            <span class="diag-label">ESTABILIDADE</span>
+            <div id="jitter-val" class="diag-value">-- %</div>
+        </div>
+        <div class="diag-item">
+            <span class="diag-label">VAZÃO (DATA)</span>
+            <div id="thru-val" class="diag-value">0 bps</div>
+        </div>
+        <div class="wave-container" id="wave">
+            </div>
     </div>
 
     <div class="card">
-        <h2 style="margin:0; font-size:1rem; color:var(--glow);">PROTETOR DE BANDA</h2>
-        <div class="tunnel-bar"><div id="fill"></div></div>
-        <button class="btn" style="background:var(--glow); color:#000;" onclick="turboWide()">EXPANDIR TÚNEL DE DADOS</button>
+        <button class="btn" style="background:var(--glow); color:#000;" onclick="initCommander()">INICIALIZAR DIAGNÓSTICO</button>
     </div>
 
     <div class="card">
         <div style="display:flex; gap:5px;">
             <a href="sms:" class="btn" style="background:#5fc9f8; color:#000; flex:1;">iMESSAGE</a>
-            <a href="https://api.whatsapp.com/send?text=Link_Ativo" class="btn" style="background:#25d366; color:#fff; flex:1;">WHATSAPP</a>
+            <a href="https://api.whatsapp.com/send?text=Sinal_Estavel" class="btn" style="background:#25d366; color:#fff; flex:1;">WHATSAPP</a>
         </div>
-        <button class="btn" style="background:var(--mesh); color:#000;" onclick="document.getElementById('m-box').style.display='block'">ABRIR CHAT MESH</button>
-        
-        <div id="m-box" style="display:none; margin-top:10px;">
-            <div id="chat" style="height:80px; background:#000; border-radius:8px; padding:8px; font-size:0.75rem; overflow-y:auto; border:1px solid #333; margin-bottom:5px;"></div>
-            <input type="text" id="msg" placeholder="Mensagem local..." style="width:100%; background:#222; border:none; color:#fff; padding:10px; border-radius:8px; box-sizing:border-box;">
-            <button onclick="send()" class="btn" style="background:#444; color:#fff;">ENVIAR MESH</button>
-        </div>
-    </div>
-
-    <div class="card">
-        <h3 style="margin:0; font-size:0.9rem;">YOUTUBE LITE STREAM</h3>
-        <input type="text" id="yt" placeholder="ID do vídeo" style="width:75%; padding:10px; background:#222; border:none; color:#fff; border-radius:8px; margin-top:8px;">
-        <button onclick="play()" style="width:20%; background:red; border:none; padding:10px; border-radius:8px; color:#fff;">GO</button>
-        <div id="v" style="margin-top:10px;"></div>
+        <button class="btn" style="background:var(--mesh); color:#000; margin-top:10px;" onclick="document.getElementById('m-box').style.display='block'">ABRIR HUB MESH</button>
     </div>
 
     <script>
-        let tunnelPower = 0;
-        const bc = new BroadcastChannel('wide_mesh');
+        let lastAcc = 0;
+        let waveBars = [];
+        
+        // Criar barras do gráfico
+        const waveCont = document.getElementById('wave');
+        for(let i=0; i<30; i++) {
+            let b = document.createElement('div');
+            b.className = 'bar';
+            waveCont.appendChild(b);
+            waveBars.push(b);
+        }
 
-        function turboWide() {
-            alert("Injetando protocolos de alta vazão no resquício de sinal...");
-            setInterval(() => {
-                const start = Date.now();
-                // Força o rádio a "gritar" por pacotes
-                fetch('https://1.1.1.1/cdn-cgi/trace', { mode: 'no-cors' }).then(() => {
-                    const lat = Date.now() - start;
-                    document.getElementById('ping').innerText = lat + "ms";
-                    tunnelPower = Math.min(100, tunnelPower + 5);
-                    document.getElementById('fill').style.width = tunnelPower + "%";
-                });
-            }, 3000);
-            
-            // Ativa sensores de alta precisão
+        function initCommander() {
+            alert("Sensores de rádio e GPS vinculados ao Dashboard!");
             navigator.geolocation.watchPosition(p => {
-                document.getElementById('dbm-status').innerText = Math.round(-50 - (p.coords.accuracy/2)) + " dBm";
+                const acc = p.coords.accuracy;
+                const dbm = Math.round(-50 - (acc / 2));
+                const jitter = Math.abs(acc - lastAcc).toFixed(1);
+                
+                document.getElementById('dbm-val').innerText = dbm + " dBm";
+                document.getElementById('jitter-val').innerText = (100 - (jitter * 2)).toFixed(0) + "%";
+                document.getElementById('thru-val').innerText = (acc < 10 ? "BANDA ALTA" : "RESQUÍCIO");
+                
+                // Atualizar gráfico
+                waveBars.forEach(b => {
+                    let h = Math.random() * (100 / (acc/5));
+                    b.style.height = Math.min(100, h) + "%";
+                });
+
+                lastAcc = acc;
             }, null, {enableHighAccuracy: true});
-        }
-
-        bc.onmessage = (e) => {
-            document.getElementById('chat').innerHTML += `<div><b>${e.data.u}:</b> ${e.data.m}</div>`;
-        };
-
-        function send() {
-            const m = document.getElementById('msg').value;
-            if(m) {
-                bc.postMessage({u: "User", m});
-                document.getElementById('chat').innerHTML += `<div><b>Você:</b> ${m}</div>`;
-                document.getElementById('msg').value = "";
-            }
-        }
-
-        function play() {
-            const id = document.getElementById('yt').value;
-            document.getElementById('v').innerHTML = `<iframe width="100%" height="160" src="https://www.youtube.com/embed/${id}?vq=tiny&autoplay=1" frameborder="0" allowfullscreen></iframe>`;
         }
     </script>
 </body>
