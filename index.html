@@ -3,145 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Terra Inteligent PRO</title>
+    <title>TERRA INTELIGENT PRO v2</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <style>
-        :root { --glow: #00ff88; --alert: #ff3b30; --bg: #050505; --card: #121212; }
-        body { font-family: -apple-system, monospace; background: var(--bg); color: #fff; margin: 0; padding: 15px; }
-        .header { text-align: center; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 15px; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .card { background: var(--card); border-radius: 15px; padding: 15px; border: 1px solid #333; }
-        .full { grid-column: span 2; }
-        h2 { font-size: 0.7rem; color: var(--glow); text-transform: uppercase; margin: 0 0 10px 0; letter-spacing: 1px; }
-        .display { font-size: 1.6rem; font-weight: bold; margin: 5px 0; }
-        input, textarea { background: #1a1a1a; border: 1px solid #333; color: #fff; width: 100%; padding: 10px; border-radius: 8px; box-sizing: border-box; margin-bottom: 10px; }
-        button { background: var(--glow); color: #000; border: none; padding: 12px; border-radius: 10px; width: 100%; font-weight: bold; cursor: pointer; }
-        .sos-btn { background: var(--alert); color: #fff; }
-        #liveChat { height: 120px; overflow-y: auto; background: #000; padding: 5px; font-size: 0.8rem; border: 1px solid #222; margin-bottom: 10px; }
-        .radar { width: 40px; height: 40px; border: 2px solid var(--glow); border-radius: 50%; position: relative; margin: 0 auto; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+        :root { --glow: #00ff88; --bg: #000; --card: #111; }
+        body { font-family: -apple-system, system-ui; background: var(--bg); color: #fff; margin: 0; padding: 15px; overflow-x: hidden; }
+        .card { background: var(--card); border-radius: 18px; padding: 20px; border: 1px solid #222; margin-bottom: 12px; }
+        .display { font-size: 2rem; font-weight: bold; color: var(--glow); margin: 5px 0; }
+        .radar-box { width: 60px; height: 60px; border: 2px solid var(--glow); border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative; }
+        .pulse { width: 10px; height: 10px; background: var(--glow); border-radius: 50%; animation: pulse-anim 1.5s infinite; }
+        @keyframes pulse-anim { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(4); opacity: 0; } }
+        button { background: var(--glow); color: #000; border: none; padding: 15px; border-radius: 12px; width: 100%; font-weight: bold; font-size: 1rem; margin-top: 10px; }
+        input, textarea { background: #1a1a1a; border: 1px solid #333; color: #fff; width: 100%; padding: 12px; border-radius: 10px; box-sizing: border-box; margin: 8px 0; font-size: 1rem; }
+        #chat { height: 150px; overflow-y: auto; background: #050505; border-radius: 10px; padding: 10px; font-size: 0.85rem; border: 1px solid #222; }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <h1 style="margin:0; font-size: 1.2rem;">TERRA INTELIGENT <span style="color:var(--glow)">PRO</span></h1>
-    <small id="tunnelStatus">RÁDIO: STANDBY</small>
-</div>
+    <header style="text-align: center; margin-bottom: 20px;">
+        <h1 style="font-size: 1.4rem; letter-spacing: 2px;">TERRA <span style="color:var(--glow)">PRO</span></h1>
+        <small id="netStatus">SISTEMA OFFLINE PRONTO</small>
+    </header>
 
-<div class="card full">
-    <h2>Scanner de Resquício & Data Tunnel</h2>
-    <div style="display: flex; align-items: center; justify-content: space-between;">
-        <div id="dbmValue" class="display">-- <span style="font-size: 0.8rem;">dBm</span></div>
-        <div class="radar"></div>
-    </div>
-    <button onclick="activateTunnel()">ATIVAR AMPLIFICAÇÃO LÓGICA</button>
-</div>
-
-<div class="card full">
-    <h2>Chat Mesh Ao Vivo (P2P Local)</h2>
-    <div id="liveChat">>> Sistema de mensagens local pronto...</div>
-    <div style="display: flex; gap: 5px;">
-        <input type="text" id="user" placeholder="Nome" style="width: 30%;">
-        <input type="text" id="msg" placeholder="Mensagem..." style="width: 70%;">
-    </div>
-    <button onclick="sendMesh()" style="background: #3498db; color: white;">ENVIAR AO VIVO</button>
-</div>
-
-<div class="grid">
     <div class="card">
-        <h2>GPS/Altitude</h2>
-        <div id="gpsData" style="font-size: 0.8rem;">Aguardando fixação satélite...</div>
+        <h2>Scanner de Sinal & Banda</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div id="dbm" class="display">-- dBm</div>
+            <div class="radar-box"><div class="pulse"></div></div>
+        </div>
+        <button id="btnSinal" onclick="ativarSinal()">CALIBRAR E AMPLIAR</button>
     </div>
 
-    <div class="card" onclick="initCompass()">
-        <h2>Bússola</h2>
-        <div id="heading" class="display">---°</div>
+    <div class="card">
+        <h2>Comunicação Mesh (Ao Vivo)</h2>
+        <div id="chat">>> Conecte ao Hotspot do iPhone 16 para falar...</div>
+        <input type="text" id="nome" placeholder="Seu Nome">
+        <textarea id="msg" placeholder="Mensagem ao vivo..." rows="2"></textarea>
+        <button onclick="enviarMesh()" style="background:#00a2ff; color:#fff;">ENVIAR AO VIVO</button>
     </div>
-</div>
 
-<div class="card full">
-    <h2>Notas de Campo (Offline)</h2>
-    <textarea id="notes" placeholder="Relatório de gado, cercas, etc..."></textarea>
-    <div style="display: flex; gap: 10px;">
-        <button onclick="saveNotes()" style="background: #444; color: #fff;">SALVAR</button>
-        <button class="sos-btn" onclick="triggerSOS()">SOS FLASH</button>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <div class="card">
+            <h2>Altitude</h2>
+            <div id="alt" class="display">---</div>
+        </div>
+        <div class="card" onclick="pedirBussola()">
+            <h2>Bússola</h2>
+            <div id="buss" class="display">---°</div>
+        </div>
     </div>
-</div>
 
-<script>
-    // --- 1. AMPLIFICADOR E SIGNAL HUNTER ---
-    let tunnelMode = false;
-    function activateTunnel() {
-        tunnelMode = !tunnelMode;
-        document.getElementById('tunnelStatus').innerText = tunnelMode ? "RÁDIO: HIGH PERFORMANCE" : "RÁDIO: STANDBY";
-        if(tunnelMode) huntSignal();
-    }
-
-    function huntSignal() {
-        if(!tunnelMode) return;
-        navigator.geolocation.getCurrentPosition(pos => {
-            // Usamos a acurácia do GPS como proxy de força de sinal no browser
-            let acc = pos.coords.accuracy;
-            let pseudoDbm = Math.round(-50 - (acc / 2));
-            document.getElementById('dbmValue').innerHTML = `${pseudoDbm} <span style="font-size: 0.8rem;">dBm</span>`;
-            document.getElementById('gpsData').innerHTML = `Alt: ${pos.coords.altitude?.toFixed(1)}m<br>Acc: ${acc.toFixed(1)}m`;
-            setTimeout(huntSignal, 1000);
-        }, () => setTimeout(huntSignal, 2000), {enableHighAccuracy: true});
-    }
-
-    // --- 2. HUB MESH AO VIVO ---
-    const bc = new BroadcastChannel('roca_mesh');
-    bc.onmessage = (e) => { addChatMsg(e.data.user, e.data.text, 'remote'); };
-
-    function sendMesh() {
-        const user = document.getElementById('user').value || "User";
-        const text = document.getElementById('msg').value;
-        if(text) {
-            bc.postMessage({user, text});
-            addChatMsg("Você", text, 'self');
-            document.getElementById('msg').value = "";
+    <script>
+        // --- Lógica de SINAL e GPS ---
+        function ativarSinal() {
+            if (navigator.geolocation) {
+                navigator.geolocation.watchPosition(pos => {
+                    const acc = pos.coords.accuracy;
+                    const dbmCalc = Math.round(-50 - (acc / 2));
+                    document.getElementById('dbm').innerText = dbmCalc + " dBm";
+                    document.getElementById('alt').innerText = pos.coords.altitude ? Math.round(pos.coords.altitude) + "m" : "---";
+                    document.getElementById('netStatus').innerText = "SINTONIZANDO RESQUÍCIO...";
+                    
+                    // Feedback tátil do iPhone 16
+                    if (dbmCalc > -70) window.navigator.vibrate?.([50, 30, 50]);
+                }, err => { alert("Ative o GPS nas configurações do Safari."); }, 
+                { enableHighAccuracy: true });
+            }
         }
-    }
 
-    function addChatMsg(u, t, type) {
-        const box = document.getElementById('liveChat');
-        box.innerHTML += `<div style="color:${type==='self'?'#fff':'var(--glow)'}"><b>${u}:</b> ${t}</div>`;
-        box.scrollTop = box.scrollHeight;
-    }
-
-    // --- 3. BÚSSOLA ---
-    function initCompass() {
-        if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-            DeviceOrientationEvent.requestPermission().then(s => {
-                if(s==='granted') window.addEventListener('deviceorientation', e => {
-                    let h = e.webkitCompassHeading || e.alpha;
-                    document.getElementById('heading').innerText = Math.round(h) + "°";
+        // --- Lógica de BÚSSOLA (Fix para iOS) ---
+        function pedirBussola() {
+            if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+                DeviceOrientationEvent.requestPermission().then(state => {
+                    if (state === 'granted') {
+                        window.addEventListener('deviceorientation', e => {
+                            let h = e.webkitCompassHeading || e.alpha;
+                            document.getElementById('buss').innerText = Math.round(h) + "°";
+                        });
+                    }
                 });
-            });
+            }
         }
-    }
 
-    // --- 4. NOTAS E SOS ---
-    function saveNotes() {
-        localStorage.setItem('roca_pro_notes', document.getElementById('notes').value);
-        alert("Notas salvas no iPhone!");
-    }
+        // --- CHAT MESH P2P ---
+        const bc = new BroadcastChannel('terra_mesh');
+        bc.onmessage = (e) => {
+            const chat = document.getElementById('chat');
+            chat.innerHTML += `<div><b style="color:var(--glow)">${e.data.u}:</b> ${e.data.m}</div>`;
+            chat.scrollTop = chat.scrollHeight;
+        };
 
-    async function triggerSOS() {
-        alert("SOS Ativado! Aponte o flash para o céu.");
-        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
-        const track = stream.getVideoTracks()[0];
-        for (let i = 0; i < 5; i++) {
-            track.applyConstraints({ advanced: [{ torch: true }] });
-            await new Promise(r => setTimeout(r, 300));
-            track.applyConstraints({ advanced: [{ torch: false }] });
-            await new Promise(r => setTimeout(r, 300));
+        function enviarMesh() {
+            const u = document.getElementById('nome').value || "User";
+            const m = document.getElementById('msg').value;
+            if (m) {
+                bc.postMessage({u, m});
+                document.getElementById('chat').innerHTML += `<div><b>Você:</b> ${m}</div>`;
+                document.getElementById('msg').value = "";
+            }
         }
-    }
 
-    window.onload = () => {
-        document.getElementById('notes').value = localStorage.getItem('roca_pro_notes') || "";
-    };
-</script>
+        // PWA - Salvar Notas Localmente
+        document.body.addEventListener('input', () => {
+            localStorage.setItem('notas_backup', document.getElementById('msg').value);
+        });
+    </script>
 </body>
 </html>
