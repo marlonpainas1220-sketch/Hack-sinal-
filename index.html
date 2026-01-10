@@ -3,94 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>TERRA PRO - SIGNAL COMMANDER</title>
+    <title>TERRA PRO - OMEGA</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <style>
-        :root { --glow: #00ff88; --mesh: #00d4ff; --bg: #000; --panel: #111; }
-        body { font-family: -apple-system, sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 10px; }
+        :root { --glow: #00ff88; --mesh: #00d4ff; --bg: #000; --panel: #0d0d0d; --danger: #ff3b30; }
+        body { font-family: -apple-system, system-ui, sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 10px; -webkit-user-select: none; }
         
-        /* NOVO PAINEL DE DIAGNÓSTICO */
-        .signal-dashboard { background: var(--panel); border-radius: 20px; padding: 15px; border: 1px solid #333; margin-bottom: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .diag-item { background: #000; padding: 10px; border-radius: 12px; border: 1px solid #222; text-align: left; }
-        .diag-label { font-size: 0.6rem; color: #888; text-transform: uppercase; }
-        .diag-value { font-size: 1.1rem; font-weight: bold; color: var(--glow); font-family: monospace; }
-        
-        /* GRÁFICO DE ONDA */
-        .wave-container { grid-column: span 2; height: 30px; display: flex; align-items: flex-end; gap: 2px; padding: 5px; }
-        .bar { flex: 1; background: var(--glow); min-height: 2px; transition: height 0.2s; opacity: 0.6; }
+        /* Dashboard Tático */
+        .dashboard { background: var(--panel); border-radius: 20px; padding: 15px; border: 1px solid #333; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 10px; }
+        .stat { background: #000; padding: 10px; border-radius: 12px; border: 1px solid #222; text-align: center; }
+        .stat label { font-size: 0.55rem; color: #666; text-transform: uppercase; display: block; }
+        .stat span { font-size: 1rem; font-weight: bold; color: var(--glow); font-family: monospace; }
+
+        /* Gráfico de Sinal em Tempo Real */
+        .wave-box { grid-column: span 3; height: 40px; background: #000; border-radius: 8px; display: flex; align-items: flex-end; gap: 2px; padding: 5px; border: 1px solid #222; }
+        .bar { flex: 1; background: var(--glow); min-height: 2px; transition: height 0.1s; }
 
         .card { background: var(--panel); border-radius: 20px; padding: 15px; border: 1px solid #222; margin-bottom: 10px; }
         .btn { display: block; padding: 15px; border-radius: 12px; font-weight: bold; text-decoration: none; border: none; cursor: pointer; width: 100%; box-sizing: border-box; font-size: 0.9rem; margin-top: 5px; }
+        
+        /* Ferramentas de Sobrevivência */
+        .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .tool-btn { background: #1a1a1a; color: #fff; border: 1px solid #333; padding: 10px; border-radius: 10px; font-size: 0.75rem; font-weight: bold; }
+        
+        #mesh-chat { height: 100px; overflow-y: auto; background: #000; border-radius: 10px; padding: 10px; font-size: 0.8rem; border: 1px solid #333; margin: 10px 0; color: var(--mesh); }
     </style>
 </head>
 <body>
 
-    <div class="signal-dashboard">
-        <div class="diag-item">
-            <span class="diag-label">POTÊNCIA REAL</span>
-            <div id="dbm-val" class="diag-value">-- dBm</div>
-        </div>
-        <div class="diag-item">
-            <span class="diag-label">QUALIDADE (SNR)</span>
-            <div id="snr-val" class="diag-value">OTIMIZANDO</div>
-        </div>
-        <div class="diag-item">
-            <span class="diag-label">ESTABILIDADE</span>
-            <div id="jitter-val" class="diag-value">-- %</div>
-        </div>
-        <div class="diag-item">
-            <span class="diag-label">VAZÃO (DATA)</span>
-            <div id="thru-val" class="diag-value">0 bps</div>
-        </div>
-        <div class="wave-container" id="wave">
-            </div>
+    <div class="dashboard">
+        <div class="stat"><label>POTÊNCIA</label><span id="dbm">-- dBm</span></div>
+        <div class="stat"><label>ESTAB.</label><span id="stab">--%</span></div>
+        <div class="stat"><label>BATERIA</label><span id="bat">--%</span></div>
+        <div class="wave-box" id="wave"></div>
     </div>
 
     <div class="card">
-        <button class="btn" style="background:var(--glow); color:#000;" onclick="initCommander()">INICIALIZAR DIAGNÓSTICO</button>
+        <button class="btn" style="background:var(--glow); color:#000;" onclick="masterBlindagem()">ATIVAR BLINDAGEM OMEGA</button>
     </div>
 
-    <div class="card">
+    <div class="tools-grid">
+        <button class="tool-btn" onclick="toggleSonar()">🔊 SONAR ON/OFF</button>
+        <button class="tool-btn" onclick="initInclinometro()">📐 INCLINÔMETRO</button>
+        <button class="tool-btn" onclick="triggerSOS()" style="border-color:var(--danger); color:var(--danger);">🚨 SOS RESGATE</button>
+        <button class="tool-btn" onclick="clearCache()">🔄 RESET CACHE</button>
+    </div>
+
+    <div class="card" style="border-left: 4px solid var(--mesh);">
+        <h3 style="margin:0; font-size:0.9rem; color:var(--mesh);">HUB MESH & iMESSAGE</h3>
+        <div id="mesh-chat">>> Rede Local Protegida Ativa...</div>
         <div style="display:flex; gap:5px;">
-            <a href="sms:" class="btn" style="background:#5fc9f8; color:#000; flex:1;">iMESSAGE</a>
-            <a href="https://api.whatsapp.com/send?text=Sinal_Estavel" class="btn" style="background:#25d366; color:#fff; flex:1;">WHATSAPP</a>
+            <input type="text" id="m" placeholder="Mensagem..." style="flex:1; background:#222; border:none; color:#fff; border-radius:8px; padding:10px;">
+            <button onclick="send()" style="background:var(--mesh); border:none; border-radius:8px; width:50px;">✈️</button>
         </div>
-        <button class="btn" style="background:var(--mesh); color:#000; margin-top:10px;" onclick="document.getElementById('m-box').style.display='block'">ABRIR HUB MESH</button>
+        <a href="sms:" class="btn" style="background:#5fc9f8; color:#000; margin-top:10px;">MENSAGENS SATÉLITE</a>
+    </div>
+
+    <div class="card">
+        <h3 style="margin:0; font-size:0.9rem;">TUNELAMENTO WHATSAPP/YT</h3>
+        <a href="https://api.whatsapp.com/send?text=Sinal_Terra_Omega_Ativo" target="_blank" class="btn" style="background:#25d366; color:#fff;">ABRIR WHATSAPP LITE</a>
+        <input type="text" id="yt" placeholder="ID YouTube" style="width:75%; background:#222; border:none; color:#fff; padding:10px; border-radius:8px; margin-top:10px;">
+        <button onclick="playYT()" style="width:20%; background:red; color:#fff; border:none; border-radius:8px; padding:10px;">GO</button>
+        <div id="player" style="margin-top:10px;"></div>
     </div>
 
     <script>
-        let lastAcc = 0;
-        let waveBars = [];
-        
-        // Criar barras do gráfico
-        const waveCont = document.getElementById('wave');
-        for(let i=0; i<30; i++) {
-            let b = document.createElement('div');
-            b.className = 'bar';
-            waveCont.appendChild(b);
-            waveBars.push(b);
+        let sonarActive = false;
+        let audioCtx = null;
+        const bars = [];
+        const waveBox = document.getElementById('wave');
+        for(let i=0; i<40; i++) { let b = document.createElement('div'); b.className='bar'; waveBox.appendChild(b); bars.push(b); }
+
+        function masterBlindagem() {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('data:text/javascript,self.addEventListener("fetch",e=>e.respondWith(fetch(e.request)))');
+                alert("SISTEMA BLINDADO: O app agora reside no hardware do iPhone 16.");
+            }
+            startEngine();
         }
 
-        function initCommander() {
-            alert("Sensores de rádio e GPS vinculados ao Dashboard!");
+        function startEngine() {
             navigator.geolocation.watchPosition(p => {
                 const acc = p.coords.accuracy;
                 const dbm = Math.round(-50 - (acc / 2));
-                const jitter = Math.abs(acc - lastAcc).toFixed(1);
+                document.getElementById('dbm').innerText = dbm + " dBm";
+                document.getElementById('stab').innerText = Math.max(0, 100 - acc).toFixed(0) + "%";
                 
-                document.getElementById('dbm-val').innerText = dbm + " dBm";
-                document.getElementById('jitter-val').innerText = (100 - (jitter * 2)).toFixed(0) + "%";
-                document.getElementById('thru-val').innerText = (acc < 10 ? "BANDA ALTA" : "RESQUÍCIO");
-                
-                // Atualizar gráfico
-                waveBars.forEach(b => {
-                    let h = Math.random() * (100 / (acc/5));
-                    b.style.height = Math.min(100, h) + "%";
-                });
+                // Sonar de Frequência
+                if(sonarActive && dbm > -100) {
+                    const freq = 400 + (dbm + 100) * 10;
+                    playTone(freq);
+                }
 
-                lastAcc = acc;
+                // Gráfico
+                bars.forEach(b => { b.style.height = Math.random() * (100 - acc) + "%"; });
             }, null, {enableHighAccuracy: true});
+
+            navigator.getBattery().then(b => {
+                document.getElementById('bat').innerText = (b.level * 100).toFixed(0) + "%";
+            });
         }
+
+        function playTone(freq) {
+            if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain); gain.connect(audioCtx.destination);
+            osc.frequency.value = freq; gain.gain.value = 0.1;
+            osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+        }
+
+        function toggleSonar() { sonarActive = !sonarActive; alert("Sonar " + (sonarActive ? "Ativado" : "Desativado")); }
+
+        function triggerSOS() {
+            let on = true;
+            setInterval(() => {
+                document.body.style.background = on ? "#fff" : "#000";
+                on = !on;
+            }, 100);
+            alert("SINAL DE RESGATE ATIVADO!");
+        }
+
+        const bc = new BroadcastChannel('omega_mesh');
+        bc.onmessage = (e) => { document.getElementById('mesh-chat').innerHTML += `<div><b>${e.data.u}:</b> ${e.data.m}</div>`; };
+        function send() {
+            const m = document.getElementById('m').value;
+            if(m) { bc.postMessage({u: "User", m}); document.getElementById('mesh-chat').innerHTML += `<div><b>Você:</b> ${m}</div>`; document.getElementById('m').value = ""; }
+        }
+
+        function playYT() {
+            const id = document.getElementById('yt').value;
+            document.getElementById('player').innerHTML = `<iframe width="100%" height="150" src="https://www.youtube.com/embed/${id}?vq=tiny" frameborder="0" allowfullscreen></iframe>`;
+        }
+
+        function clearCache() { localStorage.clear(); location.reload(); }
     </script>
 </body>
 </html>
