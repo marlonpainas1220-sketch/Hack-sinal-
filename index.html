@@ -8,25 +8,17 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <style>
         :root { --glow: #00ff88; --mesh: #00d4ff; --bg: #000; --panel: #0d0d0d; }
-        body { font-family: -apple-system, sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 10px; -webkit-tap-highlight-color: transparent; }
-        
-        /* Dashboard Tático Superior */
+        body { font-family: -apple-system, sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 10px; }
         .dashboard { background: var(--panel); border-radius: 20px; padding: 15px; border: 1px solid #333; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
         .stat { background: #000; padding: 8px; border-radius: 12px; border: 1px solid #222; text-align: center; }
         .stat label { font-size: 0.5rem; color: #666; text-transform: uppercase; display: block; }
         .stat span { font-size: 0.9rem; font-weight: bold; color: var(--glow); font-family: monospace; }
-
-        /* Scanner de Onda em Tempo Real */
         .wave-box { grid-column: span 3; height: 35px; background: #000; border-radius: 8px; display: flex; align-items: flex-end; gap: 2px; padding: 5px; border: 1px solid #222; }
         .bar { flex: 1; background: var(--glow); min-height: 2px; }
-
         .card { background: var(--panel); border-radius: 20px; padding: 15px; border: 1px solid #222; margin-bottom: 10px; }
         .btn { display: block; padding: 14px; border-radius: 12px; font-weight: bold; text-decoration: none; border: none; cursor: pointer; width: 100%; box-sizing: border-box; font-size: 0.9rem; margin-top: 5px; text-align: center; }
-        
-        /* Ferramentas do Sistema */
-        .tools { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+        .tools { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
         .tool-btn { background: #1a1a1a; color: #fff; border: 1px solid #333; padding: 12px; border-radius: 10px; font-size: 0.7rem; font-weight: bold; }
-        
         #mesh-display { height: 90px; overflow-y: auto; background: #000; border-radius: 10px; padding: 10px; font-size: 0.75rem; border: 1px solid #333; margin: 10px 0; color: var(--mesh); }
         input { background: #1a1a1a; border: 1px solid #333; color: #fff; padding: 10px; border-radius: 8px; width: 100%; box-sizing: border-box; }
     </style>
@@ -41,7 +33,7 @@
     </div>
 
     <div class="card">
-        <button class="btn" style="background:var(--glow); color:#000;" onclick="ativarBlindagem()">ATIVAR BLINDAGEM MÁXIMA DEFINITIVA</button>
+        <button class="btn" style="background:var(--glow); color:#000;" onclick="ativarBlindagem()">ATIVAR BLINDAGEM MÁXIMA</button>
     </div>
 
     <div class="tools">
@@ -52,10 +44,10 @@
     </div>
 
     <div class="card" style="border-left: 4px solid var(--mesh);">
-        <h3 style="margin:0; font-size:0.85rem; color:var(--mesh);">HUB MESH & iMESSAGE SATÉLITE</h3>
+        <h3 style="margin:0; font-size:0.85rem; color:var(--mesh);">HUB MESH & iMESSAGE</h3>
         <div id="mesh-display">>> Túnel local estabelecido no iPhone 16...</div>
         <div style="display:flex; gap:5px;">
-            <input type="text" id="m" placeholder="Mensagem na rede local...">
+            <input type="text" id="m" placeholder="Mensagem local...">
             <button onclick="sendMesh()" style="background:var(--mesh); border:none; border-radius:8px; width:45px;">✈️</button>
         </div>
         <a href="sms:" class="btn" style="background:#5fc9f8; color:#000; margin-top:10px;">MENSAGENS VIA SATÉLITE</a>
@@ -72,19 +64,16 @@
     </div>
 
     <script>
-        // --- MOTOR DE BLINDAGEM ---
         function ativarBlindagem() {
             if ('serviceWorker' in navigator) {
-                // Registro de Service Worker Inline para Cache Infinito
                 const swCode = `self.addEventListener("install",e=>e.waitUntil(caches.open("v1").then(c=>c.addAll(["/"]))));self.addEventListener("fetch",e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));`;
                 const blob = new Blob([swCode], {type: 'text/javascript'});
                 navigator.serviceWorker.register(URL.createObjectURL(blob));
-                alert("BLINDAGEM OMEGA: Arquivos salvos no hardware local.");
+                alert("SISTEMA BLINDADO: App gravado no hardware.");
             }
             startDiagnostics();
         }
 
-        // --- DIAGNÓSTICO DE SINAL ---
         let sonar = false;
         let audio = null;
         function startDiagnostics() {
@@ -93,16 +82,12 @@
                 const dbm = Math.round(-50 - (acc / 2));
                 document.getElementById('dbm').innerText = dbm + " dBm";
                 
-                // Ping simulado de rede
                 const start = Date.now();
                 fetch('https://1.1.1.1/favicon.ico', {mode:'no-cors'}).then(() => {
                     document.getElementById('ping').innerText = (Date.now() - start) + "ms";
                 });
-
-                // Som de Sonar
                 if(sonar && dbm > -100) beep(400 + (dbm + 100) * 10);
             }, null, {enableHighAccuracy: true});
-
             navigator.getBattery().then(b => { document.getElementById('bat').innerText = (b.level * 100).toFixed(0) + "%"; });
         }
 
@@ -115,12 +100,11 @@
 
         function toggleSonar() { sonar = !sonar; alert("Sonar: " + (sonar ? "LIGADO" : "DESLIGADO")); }
 
-        // --- MESH ---
         const bc = new BroadcastChannel('omega_final');
         bc.onmessage = (e) => { document.getElementById('mesh-display').innerHTML += `<div><b>${e.data.u}:</b> ${e.data.m}</div>`; };
         function sendMesh() {
             const m = document.getElementById('m').value;
-            if(m) { bc.postMessage({u: "Explorador", m}); document.getElementById('mesh-display').innerHTML += `<div><b>Você:</b> ${m}</div>`; document.getElementById('m').value = ""; }
+            if(m) { bc.postMessage({u: "User", m}); document.getElementById('mesh-display').innerHTML += `<div><b>Você:</b> ${m}</div>`; document.getElementById('m').value = ""; }
         }
 
         function playYT() {
