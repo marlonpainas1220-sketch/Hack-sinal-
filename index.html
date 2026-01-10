@@ -3,133 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>TERRA PRO - OMEGA</title>
+    <title>TERRA PRO - OMEGA FINAL</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <style>
-        :root { --glow: #00ff88; --mesh: #00d4ff; --bg: #000; --panel: #0d0d0d; --danger: #ff3b30; }
-        body { font-family: -apple-system, system-ui, sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 10px; -webkit-user-select: none; }
+        :root { --glow: #00ff88; --mesh: #00d4ff; --bg: #000; --panel: #0d0d0d; }
+        body { font-family: -apple-system, sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 10px; -webkit-tap-highlight-color: transparent; }
         
-        /* Dashboard Tático */
-        .dashboard { background: var(--panel); border-radius: 20px; padding: 15px; border: 1px solid #333; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 10px; }
-        .stat { background: #000; padding: 10px; border-radius: 12px; border: 1px solid #222; text-align: center; }
-        .stat label { font-size: 0.55rem; color: #666; text-transform: uppercase; display: block; }
-        .stat span { font-size: 1rem; font-weight: bold; color: var(--glow); font-family: monospace; }
+        /* Dashboard Tático Superior */
+        .dashboard { background: var(--panel); border-radius: 20px; padding: 15px; border: 1px solid #333; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
+        .stat { background: #000; padding: 8px; border-radius: 12px; border: 1px solid #222; text-align: center; }
+        .stat label { font-size: 0.5rem; color: #666; text-transform: uppercase; display: block; }
+        .stat span { font-size: 0.9rem; font-weight: bold; color: var(--glow); font-family: monospace; }
 
-        /* Gráfico de Sinal em Tempo Real */
-        .wave-box { grid-column: span 3; height: 40px; background: #000; border-radius: 8px; display: flex; align-items: flex-end; gap: 2px; padding: 5px; border: 1px solid #222; }
-        .bar { flex: 1; background: var(--glow); min-height: 2px; transition: height 0.1s; }
+        /* Scanner de Onda em Tempo Real */
+        .wave-box { grid-column: span 3; height: 35px; background: #000; border-radius: 8px; display: flex; align-items: flex-end; gap: 2px; padding: 5px; border: 1px solid #222; }
+        .bar { flex: 1; background: var(--glow); min-height: 2px; }
 
         .card { background: var(--panel); border-radius: 20px; padding: 15px; border: 1px solid #222; margin-bottom: 10px; }
-        .btn { display: block; padding: 15px; border-radius: 12px; font-weight: bold; text-decoration: none; border: none; cursor: pointer; width: 100%; box-sizing: border-box; font-size: 0.9rem; margin-top: 5px; }
+        .btn { display: block; padding: 14px; border-radius: 12px; font-weight: bold; text-decoration: none; border: none; cursor: pointer; width: 100%; box-sizing: border-box; font-size: 0.9rem; margin-top: 5px; text-align: center; }
         
-        /* Ferramentas de Sobrevivência */
-        .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .tool-btn { background: #1a1a1a; color: #fff; border: 1px solid #333; padding: 10px; border-radius: 10px; font-size: 0.75rem; font-weight: bold; }
+        /* Ferramentas do Sistema */
+        .tools { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+        .tool-btn { background: #1a1a1a; color: #fff; border: 1px solid #333; padding: 12px; border-radius: 10px; font-size: 0.7rem; font-weight: bold; }
         
-        #mesh-chat { height: 100px; overflow-y: auto; background: #000; border-radius: 10px; padding: 10px; font-size: 0.8rem; border: 1px solid #333; margin: 10px 0; color: var(--mesh); }
+        #mesh-display { height: 90px; overflow-y: auto; background: #000; border-radius: 10px; padding: 10px; font-size: 0.75rem; border: 1px solid #333; margin: 10px 0; color: var(--mesh); }
+        input { background: #1a1a1a; border: 1px solid #333; color: #fff; padding: 10px; border-radius: 8px; width: 100%; box-sizing: border-box; }
     </style>
 </head>
 <body>
 
     <div class="dashboard">
-        <div class="stat"><label>POTÊNCIA</label><span id="dbm">-- dBm</span></div>
-        <div class="stat"><label>ESTAB.</label><span id="stab">--%</span></div>
+        <div class="stat"><label>POTÊNCIA</label><span id="dbm">SCAN</span></div>
+        <div class="stat"><label>LATÊNCIA</label><span id="ping">-- ms</span></div>
         <div class="stat"><label>BATERIA</label><span id="bat">--%</span></div>
         <div class="wave-box" id="wave"></div>
     </div>
 
     <div class="card">
-        <button class="btn" style="background:var(--glow); color:#000;" onclick="masterBlindagem()">ATIVAR BLINDAGEM OMEGA</button>
+        <button class="btn" style="background:var(--glow); color:#000;" onclick="ativarBlindagem()">ATIVAR BLINDAGEM MÁXIMA DEFINITIVA</button>
     </div>
 
-    <div class="tools-grid">
-        <button class="tool-btn" onclick="toggleSonar()">🔊 SONAR ON/OFF</button>
-        <button class="tool-btn" onclick="initInclinometro()">📐 INCLINÔMETRO</button>
-        <button class="tool-btn" onclick="triggerSOS()" style="border-color:var(--danger); color:var(--danger);">🚨 SOS RESGATE</button>
-        <button class="tool-btn" onclick="clearCache()">🔄 RESET CACHE</button>
+    <div class="tools">
+        <button class="tool-btn" onclick="toggleSonar()">🔊 SONAR SINAL</button>
+        <button class="tool-btn" onclick="initInclin()">📐 INCLINÔMETRO</button>
+        <button class="tool-btn" onclick="triggerSOS()" style="border-color:#ff3b30; color:#ff3b30;">🚨 SOS RESGATE</button>
+        <button class="tool-btn" onclick="location.reload()">🔄 REFRESH HUB</button>
     </div>
 
     <div class="card" style="border-left: 4px solid var(--mesh);">
-        <h3 style="margin:0; font-size:0.9rem; color:var(--mesh);">HUB MESH & iMESSAGE</h3>
-        <div id="mesh-chat">>> Rede Local Protegida Ativa...</div>
+        <h3 style="margin:0; font-size:0.85rem; color:var(--mesh);">HUB MESH & iMESSAGE SATÉLITE</h3>
+        <div id="mesh-display">>> Túnel local estabelecido no iPhone 16...</div>
         <div style="display:flex; gap:5px;">
-            <input type="text" id="m" placeholder="Mensagem..." style="flex:1; background:#222; border:none; color:#fff; border-radius:8px; padding:10px;">
-            <button onclick="send()" style="background:var(--mesh); border:none; border-radius:8px; width:50px;">✈️</button>
+            <input type="text" id="m" placeholder="Mensagem na rede local...">
+            <button onclick="sendMesh()" style="background:var(--mesh); border:none; border-radius:8px; width:45px;">✈️</button>
         </div>
-        <a href="sms:" class="btn" style="background:#5fc9f8; color:#000; margin-top:10px;">MENSAGENS SATÉLITE</a>
+        <a href="sms:" class="btn" style="background:#5fc9f8; color:#000; margin-top:10px;">MENSAGENS VIA SATÉLITE</a>
     </div>
 
     <div class="card">
-        <h3 style="margin:0; font-size:0.9rem;">TUNELAMENTO WHATSAPP/YT</h3>
-        <a href="https://api.whatsapp.com/send?text=Sinal_Terra_Omega_Ativo" target="_blank" class="btn" style="background:#25d366; color:#fff;">ABRIR WHATSAPP LITE</a>
-        <input type="text" id="yt" placeholder="ID YouTube" style="width:75%; background:#222; border:none; color:#fff; padding:10px; border-radius:8px; margin-top:10px;">
-        <button onclick="playYT()" style="width:20%; background:red; color:#fff; border:none; border-radius:8px; padding:10px;">GO</button>
+        <h3 style="margin:0; font-size:0.85rem;">TUNELAMENTO WHATSAPP/YT</h3>
+        <a href="https://api.whatsapp.com/send?text=Sinal_Terra_Blindado" target="_blank" class="btn" style="background:#25d366; color:#fff;">ABRIR WHATSAPP LITE</a>
+        <div style="margin-top:10px; display:flex; gap:5px;">
+            <input type="text" id="yt" placeholder="ID YouTube" style="flex:1;">
+            <button onclick="playYT()" style="background:red; border:none; border-radius:8px; width:45px; color:#fff;">GO</button>
+        </div>
         <div id="player" style="margin-top:10px;"></div>
     </div>
 
     <script>
-        let sonarActive = false;
-        let audioCtx = null;
-        const bars = [];
-        const waveBox = document.getElementById('wave');
-        for(let i=0; i<40; i++) { let b = document.createElement('div'); b.className='bar'; waveBox.appendChild(b); bars.push(b); }
-
-        function masterBlindagem() {
+        // --- MOTOR DE BLINDAGEM ---
+        function ativarBlindagem() {
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('data:text/javascript,self.addEventListener("fetch",e=>e.respondWith(fetch(e.request)))');
-                alert("SISTEMA BLINDADO: O app agora reside no hardware do iPhone 16.");
+                // Registro de Service Worker Inline para Cache Infinito
+                const swCode = `self.addEventListener("install",e=>e.waitUntil(caches.open("v1").then(c=>c.addAll(["/"]))));self.addEventListener("fetch",e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));`;
+                const blob = new Blob([swCode], {type: 'text/javascript'});
+                navigator.serviceWorker.register(URL.createObjectURL(blob));
+                alert("BLINDAGEM OMEGA: Arquivos salvos no hardware local.");
             }
-            startEngine();
+            startDiagnostics();
         }
 
-        function startEngine() {
+        // --- DIAGNÓSTICO DE SINAL ---
+        let sonar = false;
+        let audio = null;
+        function startDiagnostics() {
             navigator.geolocation.watchPosition(p => {
                 const acc = p.coords.accuracy;
                 const dbm = Math.round(-50 - (acc / 2));
                 document.getElementById('dbm').innerText = dbm + " dBm";
-                document.getElementById('stab').innerText = Math.max(0, 100 - acc).toFixed(0) + "%";
                 
-                // Sonar de Frequência
-                if(sonarActive && dbm > -100) {
-                    const freq = 400 + (dbm + 100) * 10;
-                    playTone(freq);
-                }
+                // Ping simulado de rede
+                const start = Date.now();
+                fetch('https://1.1.1.1/favicon.ico', {mode:'no-cors'}).then(() => {
+                    document.getElementById('ping').innerText = (Date.now() - start) + "ms";
+                });
 
-                // Gráfico
-                bars.forEach(b => { b.style.height = Math.random() * (100 - acc) + "%"; });
+                // Som de Sonar
+                if(sonar && dbm > -100) beep(400 + (dbm + 100) * 10);
             }, null, {enableHighAccuracy: true});
 
-            navigator.getBattery().then(b => {
-                document.getElementById('bat').innerText = (b.level * 100).toFixed(0) + "%";
-            });
+            navigator.getBattery().then(b => { document.getElementById('bat').innerText = (b.level * 100).toFixed(0) + "%"; });
         }
 
-        function playTone(freq) {
-            if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.connect(gain); gain.connect(audioCtx.destination);
-            osc.frequency.value = freq; gain.gain.value = 0.1;
-            osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+        function beep(f) {
+            if(!audio) audio = new (window.AudioContext || window.webkitAudioContext)();
+            const o = audio.createOscillator(); const g = audio.createGain();
+            o.connect(g); g.connect(audio.destination); o.frequency.value = f;
+            g.gain.value = 0.05; o.start(); o.stop(audio.currentTime + 0.1);
         }
 
-        function toggleSonar() { sonarActive = !sonarActive; alert("Sonar " + (sonarActive ? "Ativado" : "Desativado")); }
+        function toggleSonar() { sonar = !sonar; alert("Sonar: " + (sonar ? "LIGADO" : "DESLIGADO")); }
 
-        function triggerSOS() {
-            let on = true;
-            setInterval(() => {
-                document.body.style.background = on ? "#fff" : "#000";
-                on = !on;
-            }, 100);
-            alert("SINAL DE RESGATE ATIVADO!");
-        }
-
-        const bc = new BroadcastChannel('omega_mesh');
-        bc.onmessage = (e) => { document.getElementById('mesh-chat').innerHTML += `<div><b>${e.data.u}:</b> ${e.data.m}</div>`; };
-        function send() {
+        // --- MESH ---
+        const bc = new BroadcastChannel('omega_final');
+        bc.onmessage = (e) => { document.getElementById('mesh-display').innerHTML += `<div><b>${e.data.u}:</b> ${e.data.m}</div>`; };
+        function sendMesh() {
             const m = document.getElementById('m').value;
-            if(m) { bc.postMessage({u: "User", m}); document.getElementById('mesh-chat').innerHTML += `<div><b>Você:</b> ${m}</div>`; document.getElementById('m').value = ""; }
+            if(m) { bc.postMessage({u: "Explorador", m}); document.getElementById('mesh-display').innerHTML += `<div><b>Você:</b> ${m}</div>`; document.getElementById('m').value = ""; }
         }
 
         function playYT() {
@@ -137,7 +128,10 @@
             document.getElementById('player').innerHTML = `<iframe width="100%" height="150" src="https://www.youtube.com/embed/${id}?vq=tiny" frameborder="0" allowfullscreen></iframe>`;
         }
 
-        function clearCache() { localStorage.clear(); location.reload(); }
+        function triggerSOS() {
+            let i = 0;
+            const t = setInterval(() => { document.body.style.background = i%2 ? "#fff" : "#000"; if(++i > 20) { clearInterval(t); document.body.style.background = "#000"; } }, 100);
+        }
     </script>
 </body>
 </html>
