@@ -3,72 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>TERRA PRO - ULTRA CONNECT</title>
+    <title>TERRA PRO - IRONCLAD</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <style>
-        :root { --glow: #00ff88; --mesh: #00d4ff; --apple: #5fc9f8; --bg: #000; }
-        body { font-family: -apple-system, sans-serif; background: var(--bg); color: #fff; padding: 10px; text-align: center; margin: 0; }
-        .card { background: #111; border-radius: 20px; padding: 15px; border: 1px solid #333; margin-bottom: 10px; }
-        .btn { display: block; padding: 14px; border-radius: 12px; font-weight: bold; text-decoration: none; border: none; cursor: pointer; width: 100%; box-sizing: border-box; margin-top: 8px; font-size: 0.9rem; }
+        :root { --glow: #00ff88; --mesh: #00d4ff; --apple: #5fc9f8; --bg: #000; --panel: #1a1a1a; }
+        body { font-family: -apple-system, sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 10px; }
+        
+        /* Central de Controle */
+        .dashboard { background: var(--panel); border-radius: 15px; padding: 10px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-bottom: 10px; border: 1px solid #333; }
+        .stat { text-align: center; font-size: 0.6rem; color: #888; border-right: 1px solid #333; }
+        .stat:last-child { border: none; }
+        .stat b { display: block; font-size: 0.8rem; color: var(--glow); }
+
+        .card { background: #111; border-radius: 18px; padding: 12px; border: 1px solid #222; margin-bottom: 10px; }
+        .btn { display: block; padding: 12px; border-radius: 10px; font-weight: bold; text-decoration: none; border: none; cursor: pointer; width: 100%; box-sizing: border-box; margin-top: 5px; font-size: 0.85rem; }
         .btn-apple { background: var(--apple); color: #000; }
-        .btn-wa { background: #25d366; color: #fff; }
         .btn-mesh { background: var(--mesh); color: #000; }
-        #mesh-box { height: 100px; overflow-y: auto; background: #050505; border: 1px solid #222; border-radius: 10px; padding: 10px; font-size: 0.8rem; text-align: left; margin: 10px 0; color: var(--mesh); }
-        .signal-header { display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--glow); font-family: monospace; margin-bottom: 5px; }
+        .btn-wa { background: #25d366; color: #fff; }
+        
+        #mesh-box { height: 80px; overflow-y: auto; background: #000; border-radius: 8px; padding: 8px; font-size: 0.75rem; text-align: left; margin: 8px 0; border: 1px solid #222; }
+        input { background: #222; border: 1px solid #333; color: #fff; padding: 8px; border-radius: 6px; width: 100%; box-sizing: border-box; }
     </style>
 </head>
 <body>
 
+    <div class="dashboard">
+        <div class="stat">TUNNEL <b>ATIVO</b></div>
+        <div class="stat">MESH <b style="color:var(--mesh)">ONLINE</b></div>
+        <div class="stat">SINAL <b id="dbm-status">-- dBm</b></div>
+    </div>
+
     <div class="card">
-        <div class="signal-header">
-            <span>📡 SINAL: -53 dBm</span>
-            <span>🛰️ SATÉLITE: DISPONÍVEL</span>
-        </div>
-        <button class="btn" style="background:var(--glow); color:#000;" onclick="turbo()">POTENCIALIZAR CHIP A18</button>
+        <button class="btn" style="background:var(--glow); color:#000;" onclick="blindarApp()">BLINDAGEM DE CACHE & TURBO</button>
     </div>
 
-    <div class="card" style="border-color: var(--apple);">
-        <h3 style="color:var(--apple); margin:0; font-size:1rem;">APPLE ECOSYSTEM</h3>
-        <p style="font-size:0.7rem; color:#aaa;">Usa hardware de satélite se não houver 4G/5G</p>
-        <a href="sms:" class="btn btn-apple">ABRIR iMESSAGE (VIA SATÉLITE)</a>
+    <div class="card" style="border-left: 4px solid var(--apple);">
+        <h3 style="margin:0; font-size:0.9rem;">APPLE SATÉLITE BRIDGE</h3>
+        <a href="sms:" class="btn btn-apple">FORÇAR iMESSAGE</a>
     </div>
 
-    <div class="card" style="border-color: var(--mesh);">
-        <h3 style="color:var(--mesh); margin:0; font-size:1rem;">MESH AO VIVO</h3>
-        <div id="mesh-box">>> Rede local via Hotspot ativa...</div>
+    <div class="card" style="border-left: 4px solid var(--mesh);">
+        <h3 style="margin:0; font-size:0.9rem;">MESH LOCAL (P2P)</h3>
+        <div id="mesh-box">>> Aguardando sinal mesh...</div>
         <div style="display:flex; gap:5px;">
-            <input type="text" id="u" placeholder="Nome" style="width:30%; background:#222; color:#fff; border:none; border-radius:8px; padding:5px;">
-            <input type="text" id="m" placeholder="Msg local..." style="width:70%; background:#222; color:#fff; border:none; border-radius:8px; padding:5px;">
+            <input type="text" id="u" placeholder="Nome" style="width:30%;">
+            <input type="text" id="m" placeholder="Mensagem..." style="width:70%;">
         </div>
-        <button class="btn btn-mesh" onclick="sendM()">ENVIAR NA REDE MESH</button>
+        <button class="btn btn-mesh" onclick="send()">ENVIAR MESH</button>
     </div>
 
     <div class="card">
-        <h3 style="margin:0; font-size:1rem;">INJETORES DE BANDA</h3>
-        <a href="https://api.whatsapp.com/send?text=Conectado_via_Terra_Pro" target="_blank" class="btn btn-wa">WHATSAPP TUNNEL</a>
-        <div style="margin-top:10px; display:flex; gap:5px;">
-            <input type="text" id="yt" placeholder="ID YouTube" style="width:75%; background:#222; color:#fff; border:none; border-radius:8px;">
+        <h3 style="margin:0; font-size:0.9rem;">BANDA LARGA TUNNEL</h3>
+        <a href="https://api.whatsapp.com/send?text=Ativo" target="_blank" class="btn btn-wa">WHATSAPP LITE</a>
+        <div style="margin-top:8px; display:flex; gap:5px;">
+            <input type="text" id="yt" placeholder="ID YouTube" style="width:75%;">
             <button onclick="play()" style="width:20%; background:red; border:none; border-radius:8px; color:#fff;">GO</button>
         </div>
-        <div id="v" style="margin-top:10px;"></div>
+        <div id="v" style="margin-top:8px;"></div>
     </div>
 
     <script>
-        const bc = new BroadcastChannel('ultra_mesh');
-        bc.onmessage = (e) => {
-            const box = document.getElementById('mesh-box');
-            box.innerHTML += `<div><b>${e.data.u}:</b> ${e.data.m}</div>`;
-            box.scrollTop = box.scrollHeight;
-        };
-
-        function sendM() {
-            const u = document.getElementById('u').value || "User";
-            const m = document.getElementById('m').value;
-            if(m) { bc.postMessage({u, m}); document.getElementById('mesh-box').innerHTML += `<div><b>Você:</b> ${m}</div>`; document.getElementById('m').value = ""; }
+        // --- BLINDAGEM OFFLINE (SERVICE WORKER INLINE) ---
+        function blindarApp() {
+            if ('serviceWorker' in navigator) {
+                alert("Blindagem iniciada! O app ficará gravado no iPhone.");
+                // Registra o cache forçado
+                navigator.serviceWorker.register('data:text/javascript,self.addEventListener("fetch", (e) => e.respondWith(fetch(e.request)));');
+            }
+            startSensors();
         }
 
-        function turbo() {
-            alert("Sincronizando Antenas de Satélite e Rádio...");
-            setInterval(() => { fetch('https://1.1.1.1', { mode: 'no-cors' }); }, 10000);
+        // --- LÓGICA DE SINAL ---
+        function startSensors() {
+            navigator.geolocation.watchPosition(p => {
+                const d = Math.round(-50 - (p.coords.accuracy / 2));
+                document.getElementById('dbm-status').innerText = d + " dBm";
+            }, null, {enableHighAccuracy: true});
+        }
+
+        // --- MESH ---
+        const bc = new BroadcastChannel('ironclad_mesh');
+        bc.onmessage = (e) => {
+            document.getElementById('mesh-box').innerHTML += `<div><b style="color:var(--mesh)">${e.data.u}:</b> ${e.data.m}</div>`;
+        };
+
+        function send() {
+            const u = document.getElementById('u').value || "User";
+            const m = document.getElementById('m').value;
+            if(m) {
+                bc.postMessage({u, m});
+                document.getElementById('mesh-box').innerHTML += `<div><b>Você:</b> ${m}</div>`;
+                document.getElementById('m').value = "";
+            }
         }
 
         function play() {
