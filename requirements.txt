@@ -1,2 +1,21 @@
-streamlit
-openai
+# Servidor Web e API
+fastapi==0.104.1
+uvicorn==0.24.0
+python-multipart==0.0.6
+
+# Processamento de Áudio (Grátis - Microsoft Edge TTS)
+edge-tts==6.1.9
+pydub==0.25.1
+
+# Integração com Modelos de IA (Hugging Face)
+huggingface-hub==0.19.4
+gradio_client==0.7.0
+
+# Manipulação de Imagem e Vídeo
+numpy==1.24.3
+opencv-python==4.8.1.78
+Pillow==10.1.0
+
+# Utilitários
+requests==2.31.0
+python-dotenv==1.0.0
