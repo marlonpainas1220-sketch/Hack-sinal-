@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Influencer Pro - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/lucide-static@0.344.0/font/lucide.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #050505; color: #e5e5e5; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .gradient-text { background: linear-gradient(90deg, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="min-h-screen pb-20">
+
+    <header class="p-6 border-b border-zinc-800 flex justify-between items-center glass sticky top-0 z-50">
+        <h1 class="text-xl font-black tracking-tighter gradient-text">INFLUENCER.AI</h1>
+        <span class="text-[10px] bg-zinc-800 px-2 py-1 rounded-full text-zinc-400">STATUS: CLOUD ACTIVE</span>
+    </header>
+
+    <main class="p-4 space-y-6 max-w-lg mx-auto">
+        
+        <section class="glass p-4 rounded-3xl">
+            <h2 class="text-sm font-bold mb-2 flex items-center gap-2">
+                <i class="lucide-info text-purple-500 w-4"></i> Como Criar
+            </h2>
+            <ol class="text-xs text-zinc-400 space-y-1 list-decimal ml-4">
+                <li>Gere a voz no módulo de Áudio.</li>
+                <li>Crie o vídeo usando sua foto de referência no LivePortrait.</li>
+                <li>Junte os dois no CapCut/InShot.</li>
+            </ol>
+        </section>
+
+        <div class="grid gap-4">
+            
+            <div class="glass p-5 rounded-3xl group active:scale-95 transition">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="bg-purple-500/20 p-3 rounded-2xl">
+                        <i class="lucide-video text-purple-500"></i>
+                    </div>
+                </div>
+                <h3 class="font-bold text-lg">Módulo de Vídeo (Reels)</h3>
+                <p class="text-sm text-zinc-500 mb-4">Animação de fisionomia e sincronia labial grátis.</p>
+                <a href="https://huggingface.co/spaces/Kwai-VGI/LivePortrait" target="_blank" class="block text-center bg-white text-black py-3 rounded-xl font-bold text-sm">ABRIR MOTOR DE VÍDEO</a>
+            </div>
+
+            <div class="glass p-5 rounded-3xl active:scale-95 transition">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="bg-blue-500/20 p-3 rounded-2xl">
+                        <i class="lucide-camera text-blue-500"></i>
+                    </div>
+                </div>
+                <h3 class="font-bold text-lg">Módulo de Foto (FaceID)</h3>
+                <p class="text-sm text-zinc-500 mb-4">Gere novos ensaios fotográficos com o mesmo rosto.</p>
+                <a href="https://huggingface.co/spaces/InstantID/InstantID" target="_blank" class="block text-center bg-zinc-800 text-white py-3 rounded-xl font-bold text-sm">GERAR FOTOS</a>
+            </div>
+
+            <div class="glass p-5 rounded-3xl active:scale-95 transition">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="bg-green-500/20 p-3 rounded-2xl">
+                        <i class="lucide-mic text-green-500"></i>
+                    </div>
+                </div>
+                <h3 class="font-bold text-lg">Módulo de Voz</h3>
+                <p class="text-sm text-zinc-500 mb-4">Clone sua voz ou de qualquer referência.</p>
+                <a href="https://huggingface.co/spaces/RVC-Boss/GPT-SoVITS" target="_blank" class="block text-center bg-zinc-800 text-white py-3 rounded-xl font-bold text-sm">CLONAR VOZ</a>
+            </div>
+
+        </div>
+    </main>
+
+    <nav class="fixed bottom-0 left-0 right-0 p-4 glass border-t border-zinc-800 flex justify-around">
+        <i class="lucide-home text-purple-500"></i>
+        <i class="lucide-plus-circle text-zinc-500"></i>
+        <i class="lucide-user text-zinc-500"></i>
+    </nav>
+
+</body>
+</html>
