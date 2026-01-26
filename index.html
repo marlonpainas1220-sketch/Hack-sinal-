@@ -548,1036 +548,1018 @@
 +  548       font-size: 12px;
 +  549     }
 +  550 
-+  551     /* Upload Zone */
-+  552     .upload-zone {
-+  553       border: 2px dashed var(--border-color);
-+  554       border-radius: 16px;
-+  555       padding: 40px 20px;
-+  556       text-align: center;
-+  557       cursor: pointer;
-+  558       transition: all 0.3s ease;
-+  559       background: var(--bg-elevated);
-+  560     }
-+  561 
-+  562     .upload-zone:hover {
-+  563       border-color: var(--accent-gold);
-+  564       background: rgba(212, 175, 55, 0.05);
-+  565     }
-+  566 
-+  567     .upload-zone i {
-+  568       font-size: 48px;
-+  569       color: var(--accent-gold);
-+  570       margin-bottom: 16px;
++  551     .btn:disabled {
++  552       opacity: 0.5;
++  553       cursor: not-allowed;
++  554       transform: none !important;
++  555     }
++  556 
++  557     /* Upload Zone */
++  558     .upload-zone {
++  559       border: 2px dashed var(--border-color);
++  560       border-radius: 16px;
++  561       padding: 40px 20px;
++  562       text-align: center;
++  563       cursor: pointer;
++  564       transition: all 0.3s ease;
++  565       background: var(--bg-elevated);
++  566     }
++  567 
++  568     .upload-zone:hover {
++  569       border-color: var(--accent-gold);
++  570       background: rgba(212, 175, 55, 0.05);
 +  571     }
 +  572 
-+  573     .upload-zone h4 {
-+  574       font-size: 16px;
-+  575       margin-bottom: 8px;
-+  576     }
-+  577 
-+  578     .upload-zone p {
-+  579       font-size: 13px;
-+  580       color: var(--text-muted);
-+  581     }
-+  582 
-+  583     /* Avatar Preview */
-+  584     .avatar-preview {
-+  585       display: flex;
-+  586       align-items: center;
-+  587       gap: 20px;
-+  588       padding: 20px;
-+  589       background: var(--bg-elevated);
-+  590       border-radius: 16px;
-+  591       margin-bottom: 20px;
-+  592     }
-+  593 
-+  594     .avatar-image {
-+  595       width: 100px;
-+  596       height: 133px;
-+  597       border-radius: 12px;
-+  598       background: linear-gradient(135deg, #2a2a3a 0%, #1a1a24 100%);
-+  599       display: flex;
-+  600       align-items: center;
-+  601       justify-content: center;
-+  602       overflow: hidden;
-+  603       border: 2px solid var(--accent-gold);
-+  604     }
-+  605 
-+  606     .avatar-image img {
-+  607       width: 100%;
-+  608       height: 100%;
-+  609       object-fit: cover;
++  573     .upload-zone i {
++  574       font-size: 48px;
++  575       color: var(--accent-gold);
++  576       margin-bottom: 16px;
++  577     }
++  578 
++  579     .upload-zone h4 {
++  580       font-size: 16px;
++  581       margin-bottom: 8px;
++  582     }
++  583 
++  584     .upload-zone p {
++  585       font-size: 13px;
++  586       color: var(--text-muted);
++  587     }
++  588 
++  589     /* Avatar Preview */
++  590     .avatar-preview {
++  591       display: flex;
++  592       align-items: center;
++  593       gap: 20px;
++  594       padding: 20px;
++  595       background: var(--bg-elevated);
++  596       border-radius: 16px;
++  597       margin-bottom: 20px;
++  598     }
++  599 
++  600     .avatar-image {
++  601       width: 100px;
++  602       height: 133px;
++  603       border-radius: 12px;
++  604       background: linear-gradient(135deg, #2a2a3a 0%, #1a1a24 100%);
++  605       display: flex;
++  606       align-items: center;
++  607       justify-content: center;
++  608       overflow: hidden;
++  609       border: 2px solid var(--accent-gold);
 +  610     }
 +  611 
-+  612     .avatar-image i {
-+  613       font-size: 36px;
-+  614       color: var(--text-muted);
-+  615     }
-+  616 
-+  617     .avatar-details h3 {
-+  618       font-size: 18px;
-+  619       margin-bottom: 8px;
-+  620     }
-+  621 
-+  622     .avatar-details p {
-+  623       font-size: 13px;
-+  624       color: var(--text-muted);
-+  625       line-height: 1.5;
++  612     .avatar-image img {
++  613       width: 100%;
++  614       height: 100%;
++  615       object-fit: cover;
++  616     }
++  617 
++  618     .avatar-image i {
++  619       font-size: 36px;
++  620       color: var(--text-muted);
++  621     }
++  622 
++  623     .avatar-details h3 {
++  624       font-size: 18px;
++  625       margin-bottom: 8px;
 +  626     }
 +  627 
-+  628     /* Tabs */
-+  629     .tabs {
-+  630       display: flex;
-+  631       gap: 8px;
-+  632       margin-bottom: 20px;
-+  633       overflow-x: auto;
-+  634       padding-bottom: 4px;
-+  635     }
-+  636 
-+  637     .tab {
-+  638       padding: 10px 18px;
-+  639       background: var(--bg-elevated);
-+  640       border: 1px solid var(--border-color);
-+  641       border-radius: 10px;
-+  642       font-size: 13px;
-+  643       font-weight: 500;
-+  644       color: var(--text-secondary);
-+  645       cursor: pointer;
-+  646       transition: all 0.2s ease;
-+  647       white-space: nowrap;
-+  648     }
-+  649 
-+  650     .tab:hover {
-+  651       color: var(--text-primary);
-+  652     }
-+  653 
-+  654     .tab.active {
-+  655       background: rgba(212, 175, 55, 0.15);
-+  656       border-color: var(--accent-gold);
-+  657       color: var(--accent-gold);
++  628     .avatar-details p {
++  629       font-size: 13px;
++  630       color: var(--text-muted);
++  631       line-height: 1.5;
++  632     }
++  633 
++  634     /* Tabs */
++  635     .tabs {
++  636       display: flex;
++  637       gap: 8px;
++  638       margin-bottom: 20px;
++  639       overflow-x: auto;
++  640       padding-bottom: 4px;
++  641     }
++  642 
++  643     .tab {
++  644       padding: 10px 18px;
++  645       background: var(--bg-elevated);
++  646       border: 1px solid var(--border-color);
++  647       border-radius: 10px;
++  648       font-size: 13px;
++  649       font-weight: 500;
++  650       color: var(--text-secondary);
++  651       cursor: pointer;
++  652       transition: all 0.2s ease;
++  653       white-space: nowrap;
++  654     }
++  655 
++  656     .tab:hover {
++  657       color: var(--text-primary);
 +  658     }
 +  659 
-+  660     /* Participant Card */
-+  661     .participant-card {
-+  662       display: flex;
-+  663       align-items: center;
-+  664       gap: 14px;
-+  665       padding: 16px;
-+  666       background: var(--bg-elevated);
-+  667       border-radius: 14px;
-+  668       margin-bottom: 12px;
-+  669       border: 1px solid transparent;
-+  670       transition: all 0.2s ease;
-+  671     }
-+  672 
-+  673     .participant-card:hover {
-+  674       border-color: var(--border-color);
-+  675     }
-+  676 
-+  677     .participant-avatar {
-+  678       width: 50px;
-+  679       height: 50px;
-+  680       border-radius: 50%;
-+  681       background: var(--gradient-gold);
-+  682       display: flex;
-+  683       align-items: center;
-+  684       justify-content: center;
-+  685       font-weight: 700;
-+  686       font-size: 18px;
-+  687       color: var(--bg-primary);
-+  688     }
-+  689 
-+  690     .participant-info {
-+  691       flex: 1;
-+  692     }
-+  693 
-+  694     .participant-name {
-+  695       font-weight: 600;
-+  696       font-size: 15px;
-+  697       margin-bottom: 4px;
++  660     .tab.active {
++  661       background: rgba(212, 175, 55, 0.15);
++  662       border-color: var(--accent-gold);
++  663       color: var(--accent-gold);
++  664     }
++  665 
++  666     /* Participant Card */
++  667     .participant-card {
++  668       display: flex;
++  669       align-items: center;
++  670       gap: 14px;
++  671       padding: 16px;
++  672       background: var(--bg-elevated);
++  673       border-radius: 14px;
++  674       margin-bottom: 12px;
++  675       border: 1px solid transparent;
++  676       transition: all 0.2s ease;
++  677     }
++  678 
++  679     .participant-card:hover {
++  680       border-color: var(--border-color);
++  681     }
++  682 
++  683     .participant-avatar {
++  684       width: 50px;
++  685       height: 50px;
++  686       border-radius: 50%;
++  687       background: var(--gradient-gold);
++  688       display: flex;
++  689       align-items: center;
++  690       justify-content: center;
++  691       font-weight: 700;
++  692       font-size: 18px;
++  693       color: var(--bg-primary);
++  694     }
++  695 
++  696     .participant-info {
++  697       flex: 1;
 +  698     }
 +  699 
-+  700     .participant-status {
-+  701       font-size: 12px;
-+  702       color: var(--text-muted);
-+  703       display: flex;
-+  704       align-items: center;
-+  705       gap: 6px;
-+  706     }
-+  707 
-+  708     .participant-status .dot {
-+  709       width: 6px;
-+  710       height: 6px;
-+  711       border-radius: 50%;
-+  712       background: var(--accent-green);
-+  713     }
-+  714 
-+  715     .participant-videos {
-+  716       text-align: right;
-+  717     }
-+  718 
-+  719     .participant-videos .count {
-+  720       font-size: 20px;
-+  721       font-weight: 700;
-+  722       font-family: 'Bebas Neue', sans-serif;
++  700     .participant-name {
++  701       font-weight: 600;
++  702       font-size: 15px;
++  703       margin-bottom: 4px;
++  704     }
++  705 
++  706     .participant-status {
++  707       font-size: 12px;
++  708       color: var(--text-muted);
++  709       display: flex;
++  710       align-items: center;
++  711       gap: 6px;
++  712     }
++  713 
++  714     .participant-status .dot {
++  715       width: 6px;
++  716       height: 6px;
++  717       border-radius: 50%;
++  718       background: var(--accent-green);
++  719     }
++  720 
++  721     .participant-videos {
++  722       text-align: right;
 +  723     }
 +  724 
-+  725     .participant-videos .label {
-+  726       font-size: 10px;
-+  727       color: var(--text-muted);
-+  728       text-transform: uppercase;
++  725     .participant-videos .count {
++  726       font-size: 20px;
++  727       font-weight: 700;
++  728       font-family: 'Bebas Neue', sans-serif;
 +  729     }
 +  730 
-+  731     /* Progress Bar */
-+  732     .progress-bar {
-+  733       height: 6px;
-+  734       background: var(--bg-elevated);
-+  735       border-radius: 3px;
-+  736       overflow: hidden;
-+  737       margin-top: 12px;
-+  738     }
-+  739 
-+  740     .progress-fill {
-+  741       height: 100%;
-+  742       background: var(--gradient-gold);
-+  743       border-radius: 3px;
-+  744       transition: width 0.5s ease;
-+  745     }
-+  746 
-+  747     /* Connection Status */
-+  748     .connection-item {
-+  749       display: flex;
-+  750       align-items: center;
-+  751       justify-content: space-between;
-+  752       padding: 16px;
-+  753       background: var(--bg-elevated);
-+  754       border-radius: 14px;
-+  755       margin-bottom: 12px;
-+  756     }
-+  757 
-+  758     .connection-left {
-+  759       display: flex;
-+  760       align-items: center;
-+  761       gap: 14px;
++  731     .participant-videos .label {
++  732       font-size: 10px;
++  733       color: var(--text-muted);
++  734       text-transform: uppercase;
++  735     }
++  736 
++  737     /* Progress Bar */
++  738     .progress-bar {
++  739       height: 6px;
++  740       background: var(--bg-elevated);
++  741       border-radius: 3px;
++  742       overflow: hidden;
++  743       margin-top: 12px;
++  744     }
++  745 
++  746     .progress-fill {
++  747       height: 100%;
++  748       background: var(--gradient-gold);
++  749       border-radius: 3px;
++  750       transition: width 0.5s ease;
++  751     }
++  752 
++  753     /* Connection Status */
++  754     .connection-item {
++  755       display: flex;
++  756       align-items: center;
++  757       justify-content: space-between;
++  758       padding: 16px;
++  759       background: var(--bg-elevated);
++  760       border-radius: 14px;
++  761       margin-bottom: 12px;
 +  762     }
 +  763 
-+  764     .connection-icon {
-+  765       width: 44px;
-+  766       height: 44px;
-+  767       border-radius: 12px;
-+  768       display: flex;
-+  769       align-items: center;
-+  770       justify-content: center;
-+  771       font-size: 20px;
-+  772     }
-+  773 
-+  774     .connection-icon.whatsapp { background: rgba(37, 211, 102, 0.15); color: #25D366; }
-+  775     .connection-icon.instagram { background: rgba(225, 48, 108, 0.15); color: #E1306C; }
-+  776     .connection-icon.firebase { background: rgba(255, 202, 40, 0.15); color: #FFCA28; }
-+  777     .connection-icon.openrouter { background: rgba(99, 102, 241, 0.15); color: #6366F1; }
-+  778 
-+  779     .connection-name {
-+  780       font-weight: 600;
-+  781       font-size: 14px;
-+  782       margin-bottom: 4px;
-+  783     }
++  764     .connection-left {
++  765       display: flex;
++  766       align-items: center;
++  767       gap: 14px;
++  768     }
++  769 
++  770     .connection-icon {
++  771       width: 44px;
++  772       height: 44px;
++  773       border-radius: 12px;
++  774       display: flex;
++  775       align-items: center;
++  776       justify-content: center;
++  777       font-size: 20px;
++  778     }
++  779 
++  780     .connection-icon.whatsapp { background: rgba(37, 211, 102, 0.15); color: #25D366; }
++  781     .connection-icon.instagram { background: rgba(225, 48, 108, 0.15); color: #E1306C; }
++  782     .connection-icon.firebase { background: rgba(255, 202, 40, 0.15); color: #FFCA28; }
++  783     .connection-icon.poe { background: rgba(212, 175, 55, 0.15); color: var(--accent-gold); }
 +  784 
-+  785     .connection-status {
-+  786       font-size: 12px;
-+  787       color: var(--text-muted);
-+  788     }
-+  789 
-+  790     .connection-toggle {
-+  791       position: relative;
-+  792       width: 50px;
-+  793       height: 28px;
-+  794       background: var(--bg-card);
-+  795       border-radius: 14px;
-+  796       cursor: pointer;
-+  797       transition: all 0.3s ease;
-+  798     }
-+  799 
-+  800     .connection-toggle.active {
-+  801       background: var(--accent-green);
-+  802     }
-+  803 
-+  804     .connection-toggle::after {
-+  805       content: '';
-+  806       position: absolute;
-+  807       top: 3px;
-+  808       left: 3px;
-+  809       width: 22px;
-+  810       height: 22px;
-+  811       background: white;
-+  812       border-radius: 50%;
-+  813       transition: all 0.3s ease;
-+  814     }
-+  815 
-+  816     .connection-toggle.active::after {
-+  817       left: 25px;
-+  818     }
-+  819 
-+  820     /* Frame Timeline */
-+  821     .frame-timeline {
-+  822       display: flex;
-+  823       gap: 8px;
-+  824       overflow-x: auto;
-+  825       padding: 16px 0;
-+  826     }
-+  827 
-+  828     .frame-item {
-+  829       flex-shrink: 0;
-+  830       width: 60px;
-+  831       height: 80px;
-+  832       background: var(--bg-elevated);
-+  833       border-radius: 10px;
-+  834       display: flex;
-+  835       flex-direction: column;
-+  836       align-items: center;
-+  837       justify-content: center;
-+  838       cursor: pointer;
-+  839       transition: all 0.2s ease;
-+  840       border: 2px solid transparent;
-+  841     }
-+  842 
-+  843     .frame-item:hover, .frame-item.active {
-+  844       border-color: var(--accent-gold);
-+  845     }
-+  846 
-+  847     .frame-item .number {
-+  848       font-family: 'Bebas Neue', sans-serif;
-+  849       font-size: 20px;
-+  850       color: var(--accent-gold);
++  785     .connection-name {
++  786       font-weight: 600;
++  787       font-size: 14px;
++  788       margin-bottom: 4px;
++  789     }
++  790 
++  791     .connection-status {
++  792       font-size: 12px;
++  793       color: var(--text-muted);
++  794     }
++  795 
++  796     .connection-toggle {
++  797       position: relative;
++  798       width: 50px;
++  799       height: 28px;
++  800       background: var(--bg-card);
++  801       border-radius: 14px;
++  802       cursor: pointer;
++  803       transition: all 0.3s ease;
++  804     }
++  805 
++  806     .connection-toggle.active {
++  807       background: var(--accent-green);
++  808     }
++  809 
++  810     .connection-toggle::after {
++  811       content: '';
++  812       position: absolute;
++  813       top: 3px;
++  814       left: 3px;
++  815       width: 22px;
++  816       height: 22px;
++  817       background: white;
++  818       border-radius: 50%;
++  819       transition: all 0.3s ease;
++  820     }
++  821 
++  822     .connection-toggle.active::after {
++  823       left: 25px;
++  824     }
++  825 
++  826     /* Frame Timeline */
++  827     .frame-timeline {
++  828       display: flex;
++  829       gap: 8px;
++  830       overflow-x: auto;
++  831       padding: 16px 0;
++  832     }
++  833 
++  834     .frame-item {
++  835       flex-shrink: 0;
++  836       width: 60px;
++  837       height: 80px;
++  838       background: var(--bg-elevated);
++  839       border-radius: 10px;
++  840       display: flex;
++  841       flex-direction: column;
++  842       align-items: center;
++  843       justify-content: center;
++  844       cursor: pointer;
++  845       transition: all 0.2s ease;
++  846       border: 2px solid transparent;
++  847     }
++  848 
++  849     .frame-item:hover, .frame-item.active {
++  850       border-color: var(--accent-gold);
 +  851     }
 +  852 
-+  853     .frame-item .time {
-+  854       font-size: 10px;
-+  855       color: var(--text-muted);
-+  856     }
-+  857 
-+  858     /* Product Grid */
-+  859     .product-grid {
-+  860       display: grid;
-+  861       grid-template-columns: repeat(2, 1fr);
-+  862       gap: 12px;
-+  863     }
-+  864 
-+  865     .product-card {
-+  866       background: var(--bg-elevated);
-+  867       border-radius: 14px;
-+  868       overflow: hidden;
-+  869       cursor: pointer;
-+  870       transition: all 0.2s ease;
-+  871       border: 1px solid transparent;
-+  872     }
-+  873 
-+  874     .product-card:hover {
-+  875       border-color: var(--accent-gold);
-+  876       transform: translateY(-2px);
-+  877     }
-+  878 
-+  879     .product-image {
-+  880       aspect-ratio: 1;
-+  881       background: var(--bg-card);
-+  882       display: flex;
-+  883       align-items: center;
-+  884       justify-content: center;
-+  885     }
-+  886 
-+  887     .product-image i {
-+  888       font-size: 32px;
-+  889       color: var(--text-muted);
-+  890     }
-+  891 
-+  892     .product-info {
-+  893       padding: 12px;
-+  894     }
-+  895 
-+  896     .product-name {
-+  897       font-size: 13px;
-+  898       font-weight: 600;
-+  899       margin-bottom: 4px;
++  853     .frame-item .number {
++  854       font-family: 'Bebas Neue', sans-serif;
++  855       font-size: 20px;
++  856       color: var(--accent-gold);
++  857     }
++  858 
++  859     .frame-item .time {
++  860       font-size: 10px;
++  861       color: var(--text-muted);
++  862     }
++  863 
++  864     /* Product Grid */
++  865     .product-grid {
++  866       display: grid;
++  867       grid-template-columns: repeat(2, 1fr);
++  868       gap: 12px;
++  869     }
++  870 
++  871     .product-card {
++  872       background: var(--bg-elevated);
++  873       border-radius: 14px;
++  874       overflow: hidden;
++  875       cursor: pointer;
++  876       transition: all 0.2s ease;
++  877       border: 1px solid transparent;
++  878  }
++  879 
++  880     .product-card:hover {
++  881       border-color: var(--accent-gold);
++  882       transform: translateY(-2px);
++  883     }
++  884 
++  885     .product-image {
++  886       aspect-ratio: 1;
++  887       background: var(--bg-card);
++  888       display: flex;
++  889       align-items: center;
++  890       justify-content: center;
++  891     }
++  892 
++  893     .product-image i {
++  894       font-size: 32px;
++  895       color: var(--text-muted);
++  896     }
++  897 
++  898     .product-info {
++  899       padding: 12px;
 +  900     }
 +  901 
-+  902     .product-placement {
-+  903       font-size: 11px;
-+  904       color: var(--accent-gold);
-+  905     }
-+  906 
-+  907     /* Chart placeholder */
-+  908     .chart-container {
-+  909       height: 200px;
-+  910       background: var(--bg-elevated);
-+  911       border-radius: 12px;
-+  912       display: flex;
-+  913       align-items: center;
-+  914       justify-content: center;
-+  915       position: relative;
-+  916       overflow: hidden;
-+  917     }
-+  918 
-+  919     .chart-bars {
-+  920       display: flex;
-+  921       align-items: flex-end;
-+  922       gap: 12px;
-+  923       height: 160px;
-+  924       padding: 0 20px;
-+  925     }
-+  926 
-+  927     .chart-bar {
-+  928       width: 24px;
-+  929       background: var(--gradient-gold);
-+  930       border-radius: 4px 4px 0 0;
-+  931       transition: height 0.5s ease;
-+  932     }
-+  933 
-+  934     /* Floating Action Button */
-+  935     .fab {
-+  936       position: fixed;
-+  937       bottom: 24px;
-+  938       right: 24px;
-+  939       width: 60px;
-+  940       height: 60px;
-+  941       background: var(--gradient-gold);
-+  942       border-radius: 50%;
-+  943       display: flex;
-+  944       align-items: center;
-+  945       justify-content: center;
-+  946       font-size: 24px;
-+  947       color: var(--bg-primary);
-+  948       cursor: pointer;
-+  949       box-shadow: var(--shadow-glow), var(--shadow-card);
-+  950       transition: all 0.3s ease;
-+  951       z-index: 50;
-+  952       border: none;
-+  953     }
-+  954 
-+  955     .fab:hover {
-+  956       transform: scale(1.1);
-+  957     }
-+  958 
-+  959     /* Modal */
-+  960     .modal-overlay {
-+  961       position: fixed;
-+  962       top: 0;
-+  963       left: 0;
-+  964       right: 0;
-+  965       bottom: 0;
-+  966       background: rgba(0,0,0,0.8);
-+  967       backdrop-filter: blur(8px);
-+  968       z-index: 300;
-+  969       display: flex;
-+  970       align-items: flex-end;
-+  971       justify-content: center;
-+  972       opacity: 0;
-+  973       visibility: hidden;
-+  974       transition: all 0.3s ease;
-+  975     }
-+  976 
-+  977     .modal-overlay.active {
-+  978       opacity: 1;
-+  979       visibility: visible;
-+  980     }
-+  981 
-+  982     .modal-content {
-+  983       width: 100%;
-+  984       max-width: 500px;
-+  985       max-height: 90vh;
-+  986       background: var(--bg-secondary);
-+  987       border-radius: 24px 24px 0 0;
-+  988       transform: translateY(100%);
-+  989       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-+  990       overflow-y: auto;
-+  991     }
-+  992 
-+  993     .modal-overlay.active .modal-content {
-+  994       transform: translateY(0);
-+  995     }
-+  996 
-+  997     .modal-handle {
-+  998       width: 40px;
-+  999       height: 4px;
-+ 1000       background: var(--border-color);
-+ 1001       border-radius: 2px;
-+ 1002       margin: 12px auto 20px;
-+ 1003     }
-+ 1004 
-+ 1005     .modal-header {
-+ 1006       padding: 0 24px 20px;
-+ 1007       border-bottom: 1px solid var(--border-color);
-+ 1008     }
-+ 1009 
-+ 1010     .modal-header h3 {
-+ 1011       font-family: 'Bebas Neue', sans-serif;
-+ 1012       font-size: 24px;
-+ 1013       letter-spacing: 1px;
++  902     .product-name {
++  903       font-size: 13px;
++  904       font-weight: 600;
++  905       margin-bottom: 4px;
++  906     }
++  907 
++  908     .product-placement {
++  909       font-size: 11px;
++  910       color: var(--accent-gold);
++  911     }
++  912 
++  913     /* Chart placeholder */
++  914     .chart-container {
++  915       height: 200px;
++  916       background: var(--bg-elevated);
++  917       border-radius: 12px;
++  918       display: flex;
++  919       align-items: center;
++  920       justify-content: center;
++  921       position: relative;
++  922       overflow: hidden;
++  923     }
++  924 
++  925     .chart-bars {
++  926       display: flex;
++  927       align-items: flex-end;
++  928       gap: 12px;
++  929       height: 160px;
++  930       padding: 0 20px;
++  931     }
++  932 
++  933     .chart-bar {
++  934       width: 24px;
++  935       background: var(--gradient-gold);
++  936       border-radius: 4px 4px 0 0;
++  937       transition: height 0.5s ease;
++  938     }
++  939 
++  940     /* Floating Action Button */
++  941     .fab {
++  942       position: fixed;
++  943       bottom: 24px;
++  944       right: 24px;
++  945       width: 60px;
++  946       height: 60px;
++  947       background: var(--gradient-gold);
++  948       border-radius: 50%;
++  949       display: flex;
++  950       align-items: center;
++  951       justify-content: center;
++  952       font-size: 24px;
++  953       color: var(--bg-primary);
++  954       cursor: pointer;
++  955       box-shadow: var(--shadow-glow), var(--shadow-card);
++  956       transition: all 0.3s ease;
++  957       z-index: 50;
++  958       border: none;
++  959     }
++  960 
++  961     .fab:hover {
++  962       transform: scale(1.1);
++  963     }
++  964 
++  965     /* Modal */
++  966     .modal-overlay {
++  967       position: fixed;
++  968       top: 0;
++  969       left: 0;
++  970       right: 0;
++  971       bottom: 0;
++  972       background: rgba(0,0,0,0.8);
++  973       backdrop-filter: blur(8px);
++  974       z-index: 300;
++  975       display: flex;
++  976       align-items: flex-end;
++  977       justify-content: center;
++  978       opacity: 0;
++  979       visibility: hidden;
++  980       transition: all 0.3s ease;
++  981     }
++  982 
++  983     .modal-overlay.active {
++  984       opacity: 1;
++  985       visibility: visible;
++  986     }
++  987 
++  988     .modal-content {
++  989       width: 100%;
++  990       max-width: 500px;
++  991       max-height: 90vh;
++  992       background: var(--bg-secondary);
++  993       border-radius: 24px 24px 0 0;
++  994       transform: translateY(100%);
++  995       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
++  996       overflow-y: auto;
++  997     }
++  998 
++  999     .modal-overlay.active .modal-content {
++ 1000       transform: translateY(0);
++ 1001     }
++ 1002 
++ 1003     .modal-handle {
++ 1004       width: 40px;
++ 1005       height: 4px;
++ 1006       background: var(--border-color);
++ 1007       border-radius: 2px;
++ 1008       margin: 12px auto 20px;
++ 1009     }
++ 1010 
++ 1011     .modal-header {
++ 1012       padding: 0 24px 20px;
++ 1013       border-bottom: 1px solid var(--border-color);
 + 1014     }
 + 1015 
-+ 1016     .modal-body {
-+ 1017       padding: 24px;
-+ 1018     }
-+ 1019 
-+ 1020     .modal-footer {
-+ 1021       padding: 16px 24px 32px;
-+ 1022       display: flex;
-+ 1023       gap: 12px;
++ 1016     .modal-header h3 {
++ 1017       font-family: 'Bebas Neue', sans-serif;
++ 1018       font-size: 24px;
++ 1019       letter-spacing: 1px;
++ 1020     }
++ 1021 
++ 1022     .modal-body {
++ 1023       padding: 24px;
 + 1024     }
 + 1025 
-+ 1026     /* Empty State */
-+ 1027     .empty-state {
-+ 1028       text-align: center;
-+ 1029       padding: 60px 20px;
++ 1026     .modal-footer {
++ 1027       padding: 16px 24px 32px;
++ 1028       display: flex;
++ 1029       gap: 12px;
 + 1030     }
 + 1031 
-+ 1032     .empty-state i {
-+ 1033       font-size: 64px;
-+ 1034       color: var(--text-muted);
-+ 1035       margin-bottom: 20px;
++ 1032     /* Empty State */
++ 1033     .empty-state {
++ 1034       text-align: center;
++ 1035       padding: 60px 20px;
 + 1036     }
 + 1037 
-+ 1038     .empty-state h3 {
-+ 1039       font-size: 18px;
-+ 1040       margin-bottom: 8px;
-+ 1041     }
-+ 1042 
-+ 1043     .empty-state p {
-+ 1044       color: var(--text-muted);
-+ 1045       font-size: 14px;
-+ 1046       max-width: 280px;
-+ 1047       margin: 0 auto 24px;
-+ 1048     }
-+ 1049 
-+ 1050     /* Notification Badge */
-+ 1051     .badge {
-+ 1052       position: absolute;
-+ 1053       top: -4px;
-+ 1054       right: -4px;
-+ 1055       width: 18px;
-+ 1056       height: 18px;
-+ 1057       background: var(--accent-red);
-+ 1058       border-radius: 50%;
-+ 1059       font-size: 10px;
-+ 1060       font-weight: 700;
-+ 1061       display: flex;
-+ 1062       align-items: center;
-+ 1063       justify-content: center;
-+ 1064     }
-+ 1065 
-+ 1066     /* Toast */
-+ 1067     .toast {
-+ 1068       position: fixed;
-+ 1069       bottom: 100px;
-+ 1070       left: 50%;
-+ 1071       transform: translateX(-50%) translateY(100px);
-+ 1072       background: var(--bg-elevated);
-+ 1073       border: 1px solid var(--accent-gold);
-+ 1074       padding: 14px 24px;
-+ 1075       border-radius: 12px;
-+ 1076       font-size: 14px;
-+ 1077       font-weight: 500;
-+ 1078       display: flex;
-+ 1079       align-items: center;
-+ 1080       gap: 10px;
-+ 1081       z-index: 400;
-+ 1082       opacity: 0;
-+ 1083       transition: all 0.3s ease;
-+ 1084     }
-+ 1085 
-+ 1086     .toast.show {
-+ 1087       opacity: 1;
-+ 1088       transform: translateX(-50%) translateY(0);
-+ 1089     }
-+ 1090 
-+ 1091     .toast i {
-+ 1092       color: var(--accent-gold);
-+ 1093     }
-+ 1094 
-+ 1095     /* Responsive */
-+ 1096     @media (min-width: 768px) {
-+ 1097       .stats-grid {
-+ 1098         grid-template-columns: repeat(4, 1fr);
-+ 1099       }
-+ 1100       
-+ 1101       .modal-content {
-+ 1102         border-radius: 24px;
-+ 1103         margin: auto;
-+ 1104         max-height: 80vh;
-+ 1105       }
-+ 1106       
-+ 1107       .product-grid {
-+ 1108         grid-template-columns: repeat(3, 1fr);
-+ 1109       }
-+ 1110     }
-+ 1111   </style>
-+ 1112 </head>
-+ 1113 <body>
-+ 1114   <!-- Header -->
-+ 1115   <header class="header">
-+ 1116     <button class="menu-btn" id="menuBtn">
-+ 1117       <i class="fas fa-bars"></i>
-+ 1118     </button>
-+ 1119     <div class="logo">CINEPROD</div>
-+ 1120     <div class="status-indicator">
-+ 1121       <div class="status-dot"></div>
-+ 1122       <span>ONLINE</span>
-+ 1123     </div>
-+ 1124   </header>
++ 1038     .empty-state i {
++ 1039       font-size: 64px;
++ 1040       color: var(--text-muted);
++ 1041       margin-bottom: 20px;
++ 1042     }
++ 1043 
++ 1044     .empty-state h3 {
++ 1045       font-size: 18px;
++ 1046       margin-bottom: 8px;
++ 1047     }
++ 1048 
++ 1049     .empty-state p {
++ 1050       color: var(--text-muted);
++ 1051       font-size: 14px;
++ 1052       max-width: 280px;
++ 1053       margin: 0 auto 24px;
++ 1054     }
++ 1055 
++ 1056     /* Notification Badge */
++ 1057     .badge {
++ 1058       position: absolute;
++ 1059       top: -4px;
++ 1060       right: -4px;
++ 1061       width: 18px;
++ 1062       height: 18px;
++ 1063       background: var(--accent-red);
++ 1064       border-radius: 50%;
++ 1065       font-size: 10px;
++ 1066       font-weight: 700;
++ 1067       display: flex;
++ 1068       align-items: center;
++ 1069       justify-content: center;
++ 1070     }
++ 1071 
++ 1072     /* Toast */
++ 1073     .toast {
++ 1074       position: fixed;
++ 1075       bottom: 100px;
++ 1076       left: 50%;
++ 1077       transform: translateX(-50%) translateY(100px);
++ 1078       background: var(--bg-elevated);
++ 1079       border: 1px solid var(--accent-gold);
++ 1080       padding: 14px 24px;
++ 1081       border-radius: 12px;
++ 1082       font-size: 14px;
++ 1083       font-weight: 500;
++ 1084       display: flex;
++ 1085       align-items: center;
++ 1086       gap: 10px;
++ 1087       z-index: 400;
++ 1088       opacity: 0;
++ 1089       transition: all 0.3s ease;
++ 1090     }
++ 1091 
++ 1092     .toast.show {
++ 1093       opacity: 1;
++ 1094       transform: translateX(-50%) translateY(0);
++ 1095     }
++ 1096 
++ 1097     .toast i {
++ 1098       color: var(--accent-gold);
++ 1099     }
++ 1100 
++ 1101     /* Metric Row */
++ 1102     .metric-row {
++ 1103       display: flex;
++ 1104       justify-content: space-between;
++ 1105       align-items: center;
++ 1106       padding: 14px 0;
++ 1107       border-bottom: 1px solid var(--border-color);
++ 1108     }
++ 1109 
++ 1110     .metric-row:last-child {
++ 1111       border-bottom: none;
++ 1112     }
++ 1113 
++ 1114     .metric-label {
++ 1115       font-size: 14px;
++ 1116       color: var(--text-secondary);
++ 1117     }
++ 1118 
++ 1119     .metric-value {
++ 1120       font-size: 16px;
++ 1121       font-weight: 600;
++ 1122       font-family: 'Bebas Neue', sans-serif;
++ 1123       letter-spacing: 1px;
++ 1124     }
 + 1125 
-+ 1126   <!-- Menu Overlay -->
-+ 1127   <div class="menu-overlay" id="menuOverlay"></div>
-+ 1128   
-+ 1129   <!-- Menu Sheet -->
-+ 1130   <nav class="menu-sheet" id="menuSheet">
-+ 1131     <div class="menu-header">
-+ 1132       <h2>CINEPROD</h2>
-+ 1133       <p>Central de Produção IA</p>
-+ 1134     </div>
-+ 1135     <div class="menu-items">
-+ 1136       <div class="menu-item active" data-page="dashboard">
-+ 1137         <i class="fas fa-chart-line"></i>
-+ 1138         <span>Dashboard</span>
-+ 1139       </div>
-+ 1140       <div class="menu-item" data-page="novelas">
-+ 1141         <i class="fas fa-film"></i>
-+ 1142         <span>Novelas</span>
-+ 1143       </div>
-+ 1144       <div class="menu-item" data-page="reality">
-+ 1145         <i class="fas fa-video"></i>
-+ 1146         <span>Reality Show</span>
-+ 1147       </div>
-+ 1148       <div class="menu-item" data-page="avatar">
-+ 1149         <i class="fas fa-user-circle"></i>
-+ 1150         <span>Avatar</span>
-+ 1151       </div>
-+ 1152       <div class="menu-item" data-page="products">
-+ 1153         <i class="fas fa-shopping-bag"></i>
-+ 1154         <span>Produtos</span>
-+ 1155       </div>
-+ 1156       <div class="menu-item" data-page="metrics">
-+ 1157         <i class="fas fa-chart-bar"></i>
-+ 1158         <span>Métricas</span>
-+ 1159       </div>
-+ 1160       <div class="menu-item" data-page="connections">
-+ 1161         <i class="fas fa-plug"></i>
-+ 1162         <span>Conexões</span>
-+ 1163       </div>
-+ 1164     </div>
-+ 1165     <div class="menu-footer">
-+ 1166       <div class="menu-footer-info">
-+ 1167         <div class="avatar-mini">A</div>
-+ 1168         <div class="menu-footer-text">
-+ 1169           <h4>Administrador</h4>
-+ 1170           <p>admin@cineprod.io</p>
-+ 1171         </div>
-+ 1172       </div>
-+ 1173     </div>
-+ 1174   </nav>
-+ 1175 
-+ 1176   <!-- Main Content -->
-+ 1177   <main class="main">
-+ 1178     <!-- Dashboard Page -->
-+ 1179     <section class="page active" id="page-dashboard">
-+ 1180       <h1 class="page-title">Dashboard</h1>
-+ 1181       <p class="page-subtitle">Visão geral da produção</p>
-+ 1182 
-+ 1183       <div class="stats-grid">
-+ 1184         <div class="stat-card">
-+ 1185           <div class="stat-icon gold"><i class="fas fa-film"></i></div>
-+ 1186           <div class="stat-value">24</div>
-+ 1187           <div class="stat-label">Episódios Gerados</div>
-+ 1188           <div class="stat-change up"><i class="fas fa-arrow-up"></i> +8 esta semana</div>
-+ 1189         </div>
-+ 1190         <div class="stat-card">
-+ 1191           <div class="stat-icon red"><i class="fas fa-eye"></i></div>
-+ 1192           <div class="stat-value">1.2M</div>
-+ 1193           <div class="stat-label">Views Totais</div>
-+ 1194           <div class="stat-change up"><i class="fas fa-arrow-up"></i> +23%</div>
-+ 1195         </div>
-+ 1196         <div class="stat-card">
-+ 1197           <div class="stat-icon green"><i class="fas fa-users"></i></div>
-+ 1198           <div class="stat-value">47K</div>
-+ 1199           <div class="stat-label">Seguidores</div>
-+ 1200           <div class="stat-change up"><i class="fas fa-arrow-up"></i> +2.1K</div>
-+ 1201         </div>
-+ 1202         <div class="stat-card">
-+ 1203           <div class="stat-icon blue"><i class="fas fa-clock"></i></div>
-+ 1204           <div class="stat-value">68%</div>
-+ 1205           <div class="stat-label">Retenção Média</div>
-+ 1206           <div class="stat-change up"><i class="fas fa-arrow-up"></i> +5%</div>
-+ 1207         </div>
++ 1126     /* Loading spinner */
++ 1127     .spinner {
++ 1128       width: 20px;
++ 1129       height: 20px;
++ 1130       border: 2px solid var(--border-color);
++ 1131       border-top-color: var(--accent-gold);
++ 1132       border-radius: 50%;
++ 1133       animation: spin 0.8s linear infinite;
++ 1134     }
++ 1135 
++ 1136     @keyframes spin {
++ 1137       to { transform: rotate(360deg); }
++ 1138     }
++ 1139 
++ 1140     /* Responsive */
++ 1141     @media (min-width: 768px) {
++ 1142       .stats-grid {
++ 1143         grid-template-columns: repeat(4, 1fr);
++ 1144       }
++ 1145       
++ 1146       .modal-content {
++ 1147         border-radius: 24px;
++ 1148         margin: auto;
++ 1149         max-height: 80vh;
++ 1150       }
++ 1151       
++ 1152       .product-grid {
++ 1153         grid-template-columns: repeat(3, 1fr);
++ 1154       }
++ 1155     }
++ 1156   </style>
++ 1157 </head>
++ 1158 <body>
++ 1159   <!-- Header -->
++ 1160   <header class="header">
++ 1161     <button class="menu-btn" id="menuBtn">
++ 1162       <i class="fas fa-bars"></i>
++ 1163     </button>
++ 1164     <div class="logo">CINEPROD</div>
++ 1165     <div class="status-indicator">
++ 1166       <div class="status-dot"></div>
++ 1167       <span>ONLINE</span>
++ 1168     </div>
++ 1169   </header>
++ 1170 
++ 1171   <!-- Menu Overlay -->
++ 1172   <div class="menu-overlay" id="menuOverlay"></div>
++ 1173   
++ 1174   <!-- Menu Sheet -->
++ 1175   <nav class="menu-sheet" id="menuSheet">
++ 1176     <div class="menu-header">
++ 1177       <h2>CINEPROD</h2>
++ 1178       <p>Central de Produção IA</p>
++ 1179     </div>
++ 1180     <div class="menu-items">
++ 1181       <div class="menu-item active" data-page="dashboard">
++ 1182         <i class="fas fa-chart-line"></i>
++ 1183         <span>Dashboard</span>
++ 1184       </div>
++ 1185       <div class="menu-item" data-page="novelas">
++ 1186         <i class="fas fa-film"></i>
++ 1187         <span>Novelas</span>
++ 1188       </div>
++ 1189       <div class="menu-item" data-page="reality">
++ 1190         <i class="fas fa-video"></i>
++ 1191         <span>Reality Show</span>
++ 1192       </div>
++ 1193       <div class="menu-item" data-page="avatar">
++ 1194         <i class="fas fa-user-circle"></i>
++ 1195         <span>Avatar</span>
++ 1196       </div>
++ 1197       <div class="menu-item" data-page="products">
++ 1198         <i class="fas fa-shopping-bag"></i>
++ 1199         <span>Produtos</span>
++ 1200       </div>
++ 1201       <div class="menu-item" data-page="metrics">
++ 1202         <i class="fas fa-chart-bar"></i>
++ 1203         <span>Métricas</span>
++ 1204       </div>
++ 1205       <div class="menu-item" data-page="connections">
++ 1206         <i class="fas fa-plug"></i>
++ 1207         <span>Conexões</span>
 + 1208       </div>
-+ 1209 
-+ 1210       <div class="card">
-+ 1211         <div class="card-header">
-+ 1212           <span class="card-title">Últimos Episódios</span>
-+ 1213           <button class="btn btn-sm btn-secondary">Ver Todos</button>
-+ 1214         </div>
-+ 1215         <div class="episode-list">
-+ 1216           <div class="episode-item">
-+ 1217             <div class="episode-thumb">01</div>
-+ 1218             <div class="episode-info">
-+ 1219               <div class="episode-title">A Descoberta</div>
-+ 1220               <div class="episode-meta">
-+ 1221                 <span>T1 • E01</span>
-+ 1222                 <span>•</span>
-+ 1223                 <span>60s</span>
-+ 1224               </div>
-+ 1225             </div>
-+ 1226             <span class="episode-status ready">Pronto</span>
-+ 1227           </div>
-+ 1228           <div class="episode-item">
-+ 1229             <div class="episode-thumb">02</div>
-+ 1230             <div class="episode-info">
-+ 1231               <div class="episode-title">Segredos Revelados</div>
-+ 1232               <div class="episode-meta">
-+ 1233                 <span>T1 • E02</span>
-+ 1234                 <span>•</span>
-+ 1235                 <span>60s</span>
-+ 1236               </div>
-+ 1237             </div>
-+ 1238             <span class="episode-status processing">Gerando</span>
-+ 1239           </div>
-+ 1240           <div class="episode-item">
-+ 1241             <div class="episode-thumb">03</div>
-+ 1242             <div class="episode-info">
-+ 1243               <div class="episode-title">O Confronto</div>
-+ 1244               <div class="episode-meta">
-+ 1245                 <span>T1 • E03</span>
-+ 1246                 <span>•</span>
-+ 1247                 <span>60s</span>
-+ 1248               </div>
-+ 1249             </div>
-+ 1250             <span class="episode-status pending">Pendente</span>
-+ 1251           </div>
++ 1209     </div>
++ 1210     <div class="menu-footer">
++ 1211       <div class="menu-footer-info">
++ 1212         <div class="avatar-mini">A</div>
++ 1213         <div class="menu-footer-text">
++ 1214           <h4>Administrador</h4>
++ 1215           <p>admin@cineprod.io</p>
++ 1216         </div>
++ 1217       </div>
++ 1218     </div>
++ 1219   </nav>
++ 1220 
++ 1221   <!-- Main Content -->
++ 1222   <main class="main">
++ 1223     <!-- Dashboard Page -->
++ 1224     <section class="page active" id="page-dashboard">
++ 1225       <h1 class="page-title">Dashboard</h1>
++ 1226       <p class="page-subtitle">Visão geral da produção</p>
++ 1227 
++ 1228       <div class="stats-grid">
++ 1229         <div class="stat-card">
++ 1230           <div class="stat-icon gold"><i class="fas fa-film"></i></div>
++ 1231           <div class="stat-value">24</div>
++ 1232           <div class="stat-label">Episódios Gerados</div>
++ 1233           <div class="stat-change up"><i class="fas fa-arrow-up"></i> +8 esta semana</div>
++ 1234         </div>
++ 1235         <div class="stat-card">
++ 1236           <div class="stat-icon red"><i class="fas fa-eye"></i></div>
++ 1237           <div class="stat-value">1.2M</div>
++ 1238           <div class="stat-label">Views Totais</div>
++ 1239           <div class="stat-change up"><i class="fas fa-arrow-up"></i> +23%</div>
++ 1240         </div>
++ 1241         <div class="stat-card">
++ 1242           <div class="stat-icon green"><i class="fas fa-users"></i></div>
++ 1243           <div class="stat-value">47K</div>
++ 1244           <div class="stat-label">Seguidores</div>
++ 1245           <div class="stat-change up"><i class="fas fa-arrow-up"></i> +2.1K</div>
++ 1246         </div>
++ 1247         <div class="stat-card">
++ 1248           <div class="stat-icon blue"><i class="fas fa-clock"></i></div>
++ 1249           <div class="stat-value">68%</div>
++ 1250           <div class="stat-label">Retenção Média</div>
++ 1251           <div class="stat-change up"><i class="fas fa-arrow-up"></i> +5%</div>
 + 1252         </div>
 + 1253       </div>
 + 1254 
 + 1255       <div class="card">
 + 1256         <div class="card-header">
-+ 1257           <span class="card-title">Performance Semanal</span>
-+ 1258         </div>
-+ 1259         <div class="chart-container">
-+ 1260           <div class="chart-bars" id="chartBars">
-+ 1261             <div class="chart-bar" style="height: 60%"></div>
-+ 1262             <div class="chart-bar" style="height: 80%"></div>
-+ 1263             <div class="chart-bar" style="height: 45%"></div>
-+ 1264             <div class="chart-bar" style="height: 95%"></div>
-+ 1265             <div class="chart-bar" style="height: 70%"></div>
-+ 1266             <div class="chart-bar" style="height: 85%"></div>
-+ 1267             <div class="chart-bar" style="height: 75%"></div>
-+ 1268           </div>
-+ 1269         </div>
-+ 1270       </div>
-+ 1271     </section>
-+ 1272 
-+ 1273     <!-- Novelas Page -->
-+ 1274     <section class="page" id="page-novelas">
-+ 1275       <h1 class="page-title">Novelas</h1>
-+ 1276       <p class="page-subtitle">Produções cinematográficas por IA</p>
-+ 1277 
-+ 1278       <div class="tabs">
-+ 1279         <div class="tab active">Temporadas</div>
-+ 1280         <div class="tab">Episódios</div>
-+ 1281         <div class="tab">Frames</div>
-+ 1282         <div class="tab">Roteiros</div>
-+ 1283       </div>
-+ 1284 
-+ 1285       <div class="card">
-+ 1286         <div class="card-header">
-+ 1287           <span class="card-title">Temporada 1 — Drama</span>
-+ 1288           <span style="color: var(--accent-gold); font-size: 13px;">7/10 episódios</span>
-+ 1289         </div>
-+ 1290         <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">
-+ 1291           Uma história de amor proibido e traição em uma cidade pequena onde todos guardam segredos sombrios.
-+ 1292         </p>
-+ 1293         <div class="progress-bar">
-+ 1294           <div class="progress-fill" style="width: 70%"></div>
-+ 1295         </div>
-+ 1296       </div>
-+ 1297 
-+ 1298       <div class="card">
-+ 1299         <div class="card-header">
-+ 1300           <span class="card-title">Frame Timeline — EP 02</span>
-+ 1301         </div>
-+ 1302         <div class="frame-timeline">
-+ 1303           <div class="frame-item active">
-+ 1304             <span class="number">01</span>
-+ 1305             <span class="time">0-5s</span>
-+ 1306           </div>
-+ 1307           <div class="frame-item">
-+ 1308             <span class="number">02</span>
-+ 1309             <span class="time">5-10s</span>
-+ 1310           </div>
-+ 1311           <div class="frame-item">
-+ 1312             <span class="number">03</span>
-+ 1313             <span class="time">10-15s</span>
-+ 1314           </div>
-+ 1315           <div class="frame-item">
-+ 1316             <span class="number">04</span>
-+ 1317             <span class="time">15-20s</span>
-+ 1318           </div>
-+ 1319           <div class="frame-item">
-+ 1320             <span class="number">05</span>
-+ 1321             <span class="time">20-25s</span>
-+ 1322           </div>
-+ 1323           <div class="frame-item">
-+ 1324             <span class="number">06</span>
-+ 1325             <span class="time">25-30s</span>
-+ 1326           </div>
-+ 1327           <div class="frame-item">
-+ 1328             <span class="number">07</span>
-+ 1329             <span class="time">30-35s</span>
-+ 1330           </div>
-+ 1331           <div class="frame-item">
-+ 1332             <span class="number">08</span>
-+ 1333             <span class="time">35-40s</span>
-+ 1334           </div>
-+ 1335         </div>
-+ 1336       </div>
-+ 1337 
-+ 1338       <div class="card">
-+ 1339         <div class="card-header">
-+ 1340           <span class="card-title">Configuração da Novela</span>
-+ 1341         </div>
-+ 1342         <div class="form-group">
-+ 1343           <label class="form-label">Gênero</label>
-+ 1344           <select class="form-select" id="genreSelect">
-+ 1345             <option value="drama">Drama</option>
-+ 1346             <option value="suspense">Suspense</option>
-+ 1347             <option value="terror">Terror</option>
-+ 1348             <option value="romance">Romance</option>
-+ 1349             <option value="thriller">Thriller</option>
-+ 1350           </select>
-+ 1351         </div>
-+ 1352         <div class="form-group">
-+ 1353           <label class="form-label">Tema Central</label>
-+ 1354           <input type="text" class="form-input" placeholder="Ex: Vingança, Redenção, Amor Proibido">
-+ 1355         </div>
-+ 1356         <div class="form-group">
-+ 1357           <label class="form-label">Tom Emocional</label>
-+ 1358           <select class="form-select">
-+ 1359             <option value="tenso">Tenso e Misterioso</option>
-+ 1360             <option value="romantico">Romântico e Intenso</option>
-+ 1361             <option value="sombrio">Sombrio e Perturbador</option>
-+ 1362             <option value="esperanca">Esperançoso</option>
-+ 1363           </select>
-+ 1364         </div>
-+ 1365         <div class="form-group">
-+ 1366           <label class="form-label">Playlist Spotify (URL)</label>
-+ 1367           <input type="url" class="form-input" placeholder="https://open.spotify.com/playlist/...">
-+ 1368         </div>
-+ 1369         <button class="btn btn-primary btn-block">
-+ 1370           <i class="fas fa-magic"></i>
-+ 1371           Gerar Nova Temporada
-+ 1372         </button>
-+ 1373       </div>
-+ 1374     </section>
-+ 1375 
-+ 1376     <!-- Reality Show Page -->
-+ 1377     <section class="page" id="page-reality">
-+ 1378       <h1 class="page-title">Reality Show</h1>
-+ 1379       <p class="page-subtitle">Conteúdo via WhatsApp</p>
-+ 1380 
-+ 1381       <div class="card">
-+ 1382         <div class="card-header">
-+ 1383           <span class="card-title">Participantes</span>
-+ 1384           <span style="color: var(--accent-green); font-size: 12px;"><i class="fas fa-circle" style="font-size: 8px;"></i> 3 Ativos</span>
-+ 1385         </div>
-+ 1386         
-+ 1387         <div class="participant-card">
-+ 1388           <div class="participant-avatar">M</div>
-+ 1389           <div class="participant-info">
-+ 1390             <div class="participant-name">Marlon</div>
-+ 1391             <div class="participant-status">
-+ 1392               <span class="dot"></span>
-+ 1393               Último envio: há 2h
-+ 1394             </div>
-+ 1395           </div>
-+ 1396           <div class="participant-videos">
-+ 1397             <div class="count">23</div>
-+ 1398             <div class="label">Vídeos</div>
-+ 1399           </div>
++ 1257           <span class="card-title">Últimos Episódios</span>
++ 1258           <button class="btn btn-sm btn-secondary">Ver Todos</button>
++ 1259         </div>
++ 1260         <div class="episode-list">
++ 1261           <div class="episode-item">
++ 1262             <div class="episode-thumb">01</div>
++ 1263             <div class="episode-info">
++ 1264               <div class="episode-title">A Descoberta</div>
++ 1265               <div class="episode-meta">
++ 1266                 <span>T1 • E01</span>
++ 1267                 <span>•</span>
++ 1268                 <span>60s</span>
++ 1269               </div>
++ 1270             </div>
++ 1271             <span class="episode-status ready">Pronto</span>
++ 1272           </div>
++ 1273           <div class="episode-item">
++ 1274             <div class="episode-thumb">02</div>
++ 1275             <div class="episode-info">
++ 1276               <div class="episode-title">Segredos Revelados</div>
++ 1277               <div class="episode-meta">
++ 1278                 <span>T1 • E02</span>
++ 1279                 <span>•</span>
++ 1280                 <span>60s</span>
++ 1281               </div>
++ 1282             </div>
++ 1283             <span class="episode-status processing">Gerando</span>
++ 1284           </div>
++ 1285           <div class="episode-item">
++ 1286             <div class="episode-thumb">03</div>
++ 1287             <div class="episode-info">
++ 1288               <div class="episode-title">O Confronto</div>
++ 1289               <div class="episode-meta">
++ 1290                 <span>T1 • E03</span>
++ 1291                 <span>•</span>
++ 1292                 <span>60s</span>
++ 1293               </div>
++ 1294             </div>
++ 1295             <span class="episode-status pending">Pendente</span>
++ 1296           </div>
++ 1297         </div>
++ 1298       </div>
++ 1299 
++ 1300       <div class="card">
++ 1301         <div class="card-header">
++ 1302           <span class="card-title">Performance Semanal</span>
++ 1303         </div>
++ 1304         <div class="chart-container">
++ 1305           <div class="chart-bars" id="chartBars">
++ 1306             <div class="chart-bar" style="height: 60%"></div>
++ 1307             <div class="chart-bar" style="height: 80%"></div>
++ 1308             <div class="chart-bar" style="height: 45%"></div>
++ 1309             <div class="chart-bar" style="height: 95%"></div>
++ 1310             <div class="chart-bar" style="height: 70%"></div>
++ 1311             <div class="chart-bar" style="height: 85%"></div>
++ 1312             <div class="chart-bar" style="height: 75%"></div>
++ 1313           </div>
++ 1314         </div>
++ 1315       </div>
++ 1316     </section>
++ 1317 
++ 1318     <!-- Novelas Page -->
++ 1319     <section class="page" id="page-novelas">
++ 1320       <h1 class="page-title">Novelas</h1>
++ 1321       <p class="page-subtitle">Produções cinematográficas por IA</p>
++ 1322 
++ 1323       <div class="tabs">
++ 1324         <div class="tab active">Temporadas</div>
++ 1325         <div class="tab">Episódios</div>
++ 1326         <div class="tab">Frames</div>
++ 1327         <div class="tab">Roteiros</div>
++ 1328       </div>
++ 1329 
++ 1330       <div class="card">
++ 1331         <div class="card-header">
++ 1332           <span class="card-title">Temporada 1 — Drama</span>
++ 1333           <span style="color: var(--accent-gold); font-size: 13px;">7/10 episódios</span>
++ 1334         </div>
++ 1335         <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">
++ 1336           Uma história de amor proibido e traição em uma cidade pequena onde todos guardam segredos sombrios.
++ 1337         </p>
++ 1338         <div class="progress-bar">
++ 1339           <div class="progress-fill" style="width: 70%"></div>
++ 1340         </div>
++ 1341       </div>
++ 1342 
++ 1343       <div class="card">
++ 1344         <div class="card-header">
++ 1345           <span class="card-title">Frame Timeline — EP 02</span>
++ 1346         </div>
++ 1347         <div class="frame-timeline">
++ 1348           <div class="frame-item active">
++ 1349             <span class="number">01</span>
++ 1350             <span class="time">0-5s</span>
++ 1351           </div>
++ 1352           <div class="frame-item">
++ 1353             <span class="number">02</span>
++ 1354             <span class="time">5-10s</span>
++ 1355           </div>
++ 1356           <div class="frame-item">
++ 1357             <span class="number">03</span>
++ 1358             <span class="time">10-15s</span>
++ 1359           </div>
++ 1360           <div class="frame-item">
++ 1361             <span class="number">04</span>
++ 1362             <span class="time">15-20s</span>
++ 1363           </div>
++ 1364           <div class="frame-item">
++ 1365             <span class="number">05</span>
++ 1366             <span class="time">20-25s</span>
++ 1367           </div>
++ 1368           <div class="frame-item">
++ 1369             <span class="number">06</span>
++ 1370             <span class="time">25-30s</span>
++ 1371           </div>
++ 1372           <div class="frame-item">
++ 1373             <span class="number">07</span>
++ 1374             <span class="time">30-35s</span>
++ 1375           </div>
++ 1376           <div class="frame-item">
++ 1377             <span class="number">08</span>
++ 1378             <span class="time">35-40s</span>
++ 1379           </div>
++ 1380         </div>
++ 1381       </div>
++ 1382 
++ 1383       <div class="card">
++ 1384         <div class="card-header">
++ 1385           <span class="card-title">Configuração da Novela</span>
++ 1386         </div>
++ 1387         <div class="form-group">
++ 1388           <label class="form-label">Gênero</label>
++ 1389           <select class="form-select" id="genreSelect">
++ 1390             <option value="drama">Drama</option>
++ 1391             <option value="suspense">Suspense</option>
++ 1392             <option value="terror">Terror</option>
++ 1393             <option value="romance">Romance</option>
++ 1394             <option value="thriller">Thriller</option>
++ 1395           </select>
++ 1396         </div>
++ 1397         <div class="form-group">
++ 1398           <label class="form-label">Tema Central</label>
++ 1399           <input type="text" class="form-input" placeholder="Ex: Vingança, Redenção, Amor Proibido" id="themeInput">
 + 1400         </div>
-+ 1401 
-+ 1402         <div class="participant-card">
-+ 1403           <div class="participant-avatar" style="background: linear-gradient(135deg, #E1306C, #C13584);">L</div>
-+ 1404           <div class="participant-info">
-+ 1405             <div class="participant-name">Luana</div>
-+ 1406             <div class="participant-status">
-+ 1407               <span class="dot"></span>
-+ 1408               Último envio: há 30min
-+ 1409             </div>
-+ 1410           </div>
-+ 1411           <div class="participant-videos">
-+ 1412             <div class="count">31</div>
-+ 1413             <div class="label">Vídeos</div>
-+ 1414           </div>
-+ 1415         </div>
-+ 1416 
-+ 1417         <div class="participant-card">
-+ 1418           <div class="participant-avatar" style="background: linear-gradient(135deg, #3498db, #2980b9);">Ma</div>
-+ 1419           <div class="participant-info">
-+ 1420             <div class="participant-name">Matheus</div>
-+ 1421             <div class="participant-status">
-+ 1422               <span class="dot" style="background: var(--text-muted);"></span>
-+ 1423               Último envio: há 1d
-+ 1424             </div>
-+ 1425           </div>
-+ 1426           <div class="participant-videos">
-+ 1427             <div class="count">18</div>
-+ 1428             <div class="label">Vídeos</div>
-+ 1429           </div>
++ 1401         <div class="form-group">
++ 1402           <label class="form-label">Tom Emocional</label>
++ 1403           <select class="form-select" id="toneSelect">
++ 1404             <option value="tenso">Tenso e Misterioso</option>
++ 1405             <option value="romantico">Romântico e Intenso</option>
++ 1406             <option value="sombrio">Sombrio e Perturbador</option>
++ 1407             <option value="esperanca">Esperançoso</option>
++ 1408           </select>
++ 1409         </div>
++ 1410         <div class="form-group">
++ 1411           <label class="form-label">Playlist Spotify (URL)</label>
++ 1412           <input type="url" class="form-input" placeholder="https://open.spotify.com/playlist/..." id="playlistInput">
++ 1413         </div>
++ 1414         <button class="btn btn-primary btn-block" id="generateSeasonBtn">
++ 1415           <i class="fas fa-magic"></i>
++ 1416           Gerar Nova Temporada
++ 1417         </button>
++ 1418       </div>
++ 1419     </section>
++ 1420 
++ 1421     <!-- Reality Show Page -->
++ 1422     <section class="page" id="page-reality">
++ 1423       <h1 class="page-title">Reality Show</h1>
++ 1424       <p class="page-subtitle">Conteúdo via WhatsApp</p>
++ 1425 
++ 1426       <div class="card">
++ 1427         <div class="card-header">
++ 1428           <span class="card-title">Participantes</span>
++ 1429           <span style="color: var(--accent-green); font-size: 12px;"><i class="fas fa-circle" style="font-size: 8px;"></i> 3 Ativos</span>
 + 1430         </div>
-+ 1431       </div>
-+ 1432 
-+ 1433       <div class="card">
-+ 1434         <div class="card-header">
-+ 1435           <span class="card-title">Vídeos Pendentes</span>
-+ 1436           <span style="color: var(--accent-gold); font-size: 13px;">12 novos</span>
-+ 1437         </div>
-+ 1438         <div class="episode-list">
-+ 1439           <div class="episode-item">
-+ 1440             <div class="episode-thumb" style="background: linear-gradient(135deg, #E1306C, #C13584);">L</div>
-+ 1441             <div class="episode-info">
-+ 1442               <div class="episode-title">Discussão com Marlon</div>
-+ 1443               <div class="episode-meta">
-+ 1444                 <span>2:34</span>
-+ 1445                 <span>•</span>
-+ 1446                 <span>Conflito Detectado</span>
-+ 1447               </div>
-+ 1448             </div>
-+ 1449             <span class="episode-status ready">Aprovar</span>
-+ 1450           </div>
-+ 1451           <div class="episode-item">
-+ 1452             <div class="episode-thumb">M</div>
-+ 1453             <div class="episode-info">
-+ 1454               <div class="episode-title">Confessional — Sentimentos</div>
-+ 1455               <div class="episode-meta">
-+ 1456                 <span>1:12</span>
-+ 1457                 <span>•</span>
-+ 1458                 <span>Emoção Alta</span>
-+ 1459               </div>
-+ 1460             </div>
-+ 1461             <span class="episode-status ready">Aprovar</span>
-+ 1462           </div>
-+ 1463         </div>
-+ 1464       </div>
-+ 1465 
-+ 1466       <div class="card">
-+ 1467         <div class="card-header">
-+ 1468           <span class="card-title">Perguntas de Confessional</span>
-+ 1469         </div>
-+ 1470         <div class="form-group">
-+ 1471           <label class="form-label">Pergunta Automática</label>
-+ 1472           <textarea class="form-textarea" placeholder="A IA vai gerar perguntas baseadas nos vídeos recebidos...">O que você sentiu quando Luana disse aquilo? Você esperava essa reação dela?</textarea>
-+ 1473         </div>
-+ 1474         <button class="btn btn-secondary btn-block">
-+ 1475           <i class="fab fa-whatsapp"></i>
-+ 1476           Enviar para Participante
-+ 1477         </button>
-+ 1478       </div>
-+ 1479     </section>
-+ 1480 
-+ 1481     <!-- Avatar Page -->
-+ 1482     <section class="page" id="page-avatar">
-+ 1483       <h1 class="page-title">Avatar</h1>
-+ 1484       <p class="page-subtitle">Referência facial da protagonista</p>
-+ 1485 
-+ 1486       <div class="avatar-preview">
-+ 1487         <div class="avatar-image" id="avatarImage">
-+ 1488           <i class="fas fa-user"></i>
-+ 1489         </div>
-+ 1490         <div class="avatar-details">
-+ 1491           <h3>Protagonista</h3>
-+ 1492           <p>Esta imagem será usada como referência facial para TODOS os episódios. A fisionomia nunca mudará.</p>
-+ 1493         </div>
-+ 1494       </div>
-+ 1495 
-+ 1496       <div class="upload-zone" id="avatarUpload">
-+ 1497         <i class="fas fa-cloud-upload-alt"></i>
-+ 1498         <h4>Enviar Referência Facial</h4>
-+ 1499         <p>Arraste uma imagem ou clique para selecionar</p>
-+ 1500       </div>
-+ 1501       <input type="file" id="avatarInput" accept="image/*" style="display: none;">
-+ 1502 
-+ 1503       <div class="card" style="margin-top: 20px;">
-+ 1504         <div class="card-header">
-+ 1505           <span class="card-title">Regras do Avatar</span>
-+ 1506         </div>
-+ 1507         <ul style="list-style: none; font-size: 13px; color: var(--text-secondary);">
-+ 1508           <li style="padding: 10px 0; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 12px;">
-+ 1509             <i class="fas fa-check-circle" style="color: var(--accent-green);"></i>
-+ 1510             Rosto e traços faciais NUNCA mudam
-+ 1511           </li>
-+ 1512           <li style="padding: 10px 0; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 12px;">
-+ 1513             <i class="fas fa-check-circle" style="color: var(--accent-green);"></i>
-+ 1514             Roupas e acessórios podem variar
-+ 1515           </li>
-+ 1516           <li style="padding: 10px 0; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 12px;">
-+ 1517             <i class="fas fa-check-circle" style="color: var(--accent-green);"></i>
-+ 1518             Iluminação e cenário se adaptam
-+ 1519           </li>
-+ 1520           <li style="padding: 10px 0; display: flex; align-items: center; gap: 12px;">
-+ 1521             <i class="fas fa-check-circle" style="color: var(--accent-green);"></i>
-+ 1522             Consistência garantida entre episódios
-+ 1523           </li>
-+ 1524         </ul>
-+ 1525       </div>
-+ 1526 
-+ 1527       <div class="card">
-+ 1528         <div class="card-header">
-+ 1529           <span class="card-title">Prompt Base de Vídeo</span>
-+ 1530         </div>
-+ 1531         <textarea class="form-textarea" style="font-family: monospace; font-size: 12px;">Ultra-realistic cinematic vertical video, 9:16, live-action.
-+ 1532 Use EXACT facial reference from provided image.
-+ 1533 Do NOT alter facial features.
-+ 1534 Lighting: dramatic.
-+ 1535 Camera: cinematic lens.
-+ 1536 Emotion: {{EMOTION}}.
-+ 1537 Scene: {{SCENE}}.
-+ 1538 Clothing: {{CLOTHING}}.
-+ 1539 Netflix-level realism.</textarea>
-+ 1540       </div>
-+ 1541     </section>
-+ 1542 
-+ 1543     <!-- Products Page -->
-+ 1544     <section class="page" id="page-products">
-+ 1545       <h1 class="page-title">Produtos</h1>
-+ 1546       <p class="page-subtitle">Product Placement silencioso</p>
++ 1431         
++ 1432         <div class="participant-card">
++ 1433           <div class="participant-avatar">M</div>
++ 1434           <div class="participant-info">
++ 1435             <div class="participant-name">Marlon</div>
++ 1436             <div class="participant-status">
++ 1437               <span class="dot"></span>
++ 1438               Último envio: há 2h
++ 1439             </div>
++ 1440           </div>
++ 1441           <div class="participant-videos">
++ 1442             <div class="count">23</div>
++ 1443             <div class="label">Vídeos</div>
++ 1444           </div>
++ 1445         </div>
++ 1446 
++ 1447         <div class="participant-card">
++ 1448           <div class="participant-avatar" style="background: linear-gradient(135deg, #E1306C, #C13584);">L</div>
++ 1449           <div class="participant-info">
++ 1450             <div class="participant-name">Luana</div>
++ 1451             <div class="participant-status">
++ 1452               <span class="dot"></span>
++ 1453               Último envio: há 30min
++ 1454             </div>
++ 1455           </div>
++ 1456           <div class="participant-videos">
++ 1457             <div class="count">31</div>
++ 1458             <div class="label">Vídeos</div>
++ 1459           </div>
++ 1460         </div>
++ 1461 
++ 1462         <div class="participant-card">
++ 1463           <div class="participant-avatar" style="background: linear-gradient(135deg, #3498db, #2980b9);">Ma</div>
++ 1464           <div class="participant-info">
++ 1465             <div class="participant-name">Matheus</div>
++ 1466             <div class="participant-status">
++ 1467               <span class="dot" style="background: var(--text-muted);"></span>
++ 1468               Último envio: há 1d
++ 1469             </div>
++ 1470           </div>
++ 1471           <div class="participant-videos">
++ 1472             <div class="count">18</div>
++ 1473             <div class="label">Vídeos</div>
++ 1474           </div>
++ 1475         </div>
++ 1476       </div>
++ 1477 
++ 1478       <div class="card">
++ 1479         <div class="card-header">
++ 1480           <span class="card-title">Vídeos Pendentes</span>
++ 1481           <span style="color: var(--accent-gold); font-size: 13px;">12 novos</span>
++ 1482         </div>
++ 1483         <div class="episode-list">
++ 1484           <div class="episode-item">
++ 1485             <div class="episode-thumb" style="background: linear-gradient(135deg, #E1306C, #C13584);">L</div>
++ 1486             <div class="episode-info">
++ 1487               <div class="episode-title">Discussão com Marlon</div>
++ 1488               <div class="episode-meta">
++ 1489                 <span>2:34</span>
++ 1490                 <span>•</span>
++ 1491                 <span>Conflito Detectado</span>
++ 1492               </div>
++ 1493             </div>
++ 1494             <span class="episode-status ready">Aprovar</span>
++ 1495           </div>
++ 1496           <div class="episode-item">
++ 1497             <div class="episode-thumb">M</div>
++ 1498             <div class="episode-info">
++ 1499               <div class="episode-title">Confessional — Sentimentos</div>
++ 1500               <div class="episode-meta">
++ 1501                 <span>1:12</span>
++ 1502                 <span>•</span>
++ 1503                 <span>Emoção Alta</span>
++ 1504               </div>
++ 1505             </div>
++ 1506             <span class="episode-status ready">Aprovar</span>
++ 1507           </div>
++ 1508         </div>
++ 1509       </div>
++ 1510 
++ 1511       <div class="card">
++ 1512         <div class="card-header">
++ 1513           <span class="card-title">Perguntas de Confessional</span>
++ 1514         </div>
++ 1515         <div class="form-group">
++ 1516           <label class="form-label">Pergunta Automática</label>
++ 1517           <textarea class="form-textarea" id="confessionalQuestion">O que você sentiu quando Luana disse aquilo? Você esperava essa reação dela?</textarea>
++ 1518         </div>
++ 1519         <button class="btn btn-secondary btn-block" id="sendQuestionBtn">
++ 1520           <i class="fab fa-whatsapp"></i>
++ 1521           Enviar para Participante
++ 1522         </button>
++ 1523       </div>
++ 1524     </section>
++ 1525 
++ 1526     <!-- Avatar Page -->
++ 1527     <section class="page" id="page-avatar">
++ 1528       <h1 class="page-title">Avatar</h1>
++ 1529       <p class="page-subtitle">Referência facial da protagonista</p>
++ 1530 
++ 1531       <div class="avatar-preview">
++ 1532         <div class="avatar-image" id="avatarImage">
++ 1533           <i class="fas fa-user"></i>
++ 1534         </div>
++ 1535         <div class="avatar-details">
++ 1536           <h3>Protagonista</h3>
++ 1537           <p>Esta imagem será usada como referência facial para TODOS os episódios. A fisionomia nunca mudará.</p>
++ 1538         </div>
++ 1539       </div>
++ 1540 
++ 1541       <div class="upload-zone" id="avatarUpload">
++ 1542         <i class="fas fa-cloud-upload-alt"></i>
++ 1543         <h4>Enviar Referência Facial</h4>
++ 1544         <p>Arraste uma imagem ou clique para selecionar</p>
++ 1545       </div>
++ 1546       <input type="file" id="avatarInput" accept="image/*" style="display: none;">
 + 1547 
-+ 1548       <div class="upload-zone" id="productUpload" style="margin-bottom: 20px;">
-+ 1549         <i class="fas fa-box"></i>
-+ 1550         <h4>Adicionar Produto</h4>
-+ 1551         <p>Envie imagens de produtos para inserção</p>
-+ 1552       </div>
-+ 1553       <input type="file" id="productInput" accept="image/*" style="display: none;">
-+ 1554 
-+ 1555       <div class="product-grid" id="productGrid">
-+ 1556         <div class="product-card">
-+ 1557           <div class="product-image">
-+ 1558          ass="fas fa-coffee"></i>
-+ 1559           </div>
-+ 1560           <div class="product-info">
-+ 1561             <div class="product-name">Café Premium</div>
-+ 1562          ss="product-placement">3 inserções</div>
-+ 1563           
-+ 1564         </div>
-+ 1565         <div class="product-card">
-+ 1566           <div class="product-image">
-+ 1567             <i class="fas fa-mobile-alt"></i>
-+ 1568                     <div class="product-info">
-+ 1569             <div class="product-name">Smartphone X</div>
-+ 1570             <div class="product-placement">5 inserções</div>
-+ 1571           </div>
-+ 1572         </div>
-+ 1573         <div class="product-card">
-+ 1574           s="product-image">
-+ 1575     lass="fas fa-tshirt"></i>
-+ 1576           </div>
-+ 1577        <div class="product-info">
-+ 1578             <div class="product-name">Marca Fashion</div>
-+ 1579     <div class="product-placement">8 inserções</div>
-+ 1580           </div>
-+ 1581         </div>
-+ 1582         <div class="product-card">
-+ 1583           <di
++ 1548       <div class="card" style="margin-top: 20px;">
++ 1549         <div class="card-header">
++ 1550           <span class="card-title">Regras do Avatar</span>
++ 1551         </div>
++ 1552         <ul style="list-style: none; font-size: 13px; color: var(--text-secondary);">
++ 1553          style="padding: 10px 0; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 12px;">
++ 1554             <i class="fas fa-check-circle" style="color: var(--accent-green);"></i>
++ 1555             os faciais NUNCA mudam
++ 1556           >
++ 1557           <li style="padding: 10px 0; border-bottom: 1px solid var(--border-color); display: flex; align- c 12px;">
++ 1558         ss="fas fa-check-circlele="color: t-green"></i      Roupas  podem variar
++ 1559           </li>
++ 1560           <li style="padding: 10px 0; border-bott1px soli-bor); display: flex; align-items: center; gap: 12px;">
++ 1561             <i class="fas fa-check-circle" st var(--accent-green);"></i>
++ 1562      Ilumin cenário se adaptam
++ 1563  li>
++ 1564           <li style="padding: 10px 0; display: flex; align-items: center; gap: 12px;">
++ 1565           cla fa-cle
